@@ -1,0 +1,170 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: inge
+ * Date: 11/1/16
+ * Time: 8:37 AM
+ */
+namespace NpsSDK;
+
+class Utils{
+    function getMerchDetNotAddServices(){
+        return [Constants::QUERY_TXS,
+            Constants::REFUND,
+            Constants::SIMPLE_QUERY_TX,
+            Constants::CAPTURE,
+            Constants::CHANGE_SECRET_KEY,
+            Constants::NOTIFY_FRAUD_SCREENING_REVIEW,
+            Constants::GET_IIN_DETAILS,
+            Constants::QUERY_CARD_NUMBER];
+    }
+
+    function addExtraInf($params)
+    {
+        $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => "PHP version: ".phpversion());
+        return $params;
+    }
+
+    function addSecureHash($params, $key)
+    {
+        ksort($params);
+        $concatenated_data = concatValues($params);
+        $concat_data_w_key = $concatenated_data . $key;
+        $s_hash = md5($concat_data_w_key);
+        $params["psp_SecureHash"] = $s_hash;
+        return $params;
+    }
+
+    function concatValues($params)
+    {
+        $concated_data = "";
+        foreach ($params as $k => $v){
+            if (gettype($v) == 'array') { continue; }
+            $concated_data = $concated_data . $v;
+        }
+        return $concated_data;
+    }
+
+    function validate_size($value, $k="", $nodo="", $sanitizeStruc){
+        if ($nodo != False){
+            $key_name = $nodo . "." . $k . ".max_length";
+        }else{
+            $key_name = $k . ".max_length";
+        }
+        $size = isset($sanitizeStruc[$key_name]) ? $sanitizeStruc[$key_name] : null;
+        if ($size != null){
+            $value = substr($value, 0, intval($size));
+        }
+        return $value;
+    }
+
+    function sanitize($params, $is_root=True, $nodo = False, $sanitizeStruc = null){
+        if ($is_root){
+            $sanitizeStruc = parse_ini_file(dirname(__FILE__) . '/conf/' . 'sanitize_struc.ini');
+        }
+        if ($is_root == True){
+            $result_params = array();
+        }
+        else{
+            $result_params = $params;
+        }
+        foreach ($params as $key => $value) {
+
+
+            if (is_array($value)){
+                if (self::is_assoc($value)){
+                    $result_params[$key] = self::sanitize($value, False, $key, $sanitizeStruc);
+                }
+                elseif (is_array($value)){
+                    $result_params[$key] = self::check_sanitize_array($value, $key, $sanitizeStruc);
+                }
+            }
+            else{
+
+                $result_params[$key] = self::validate_size($value, $key, $nodo, $sanitizeStruc);
+            }
+        }
+
+        return $result_params;
+    }
+
+    function is_assoc($array)
+    {
+
+        // Keys of the array
+        $keys = array_keys($array);
+
+        // If the array keys of the keys match the keys, then the array must
+        // not be associative (e.g. the keys array looked like {0:0, 1:1...}).
+        return array_keys($keys) !== $keys;
+    }
+
+    function check_sanitize_array($params, $nodo, $sanitizeStruc){
+        $result_params = array();
+        foreach ($params as $x){
+            array_push($result_params, self::sanitize($x, False, $nodo, $sanitizeStruc));
+        }
+        return $result_params;
+    }
+
+    function mask_data($data){
+        $data = self::_mask_c_number($data);
+        $data = self::_mask_exp_date($data);
+        $data = self::_mask_cvc($data);
+        return $data;
+    }
+
+
+    function _mask_cvc($data){
+        $cvc_key = "</psp_CardSecurityCode>";
+        $cvcs = self::_find_cvc($data);
+        foreach ($cvcs as $cvc){
+            $repeat = strlen($cvc) - strlen($cvc_key);
+            $data = str_replace($cvcs, str_repeat("*", $repeat). $cvc_key, $data);
+        }
+        return $data;
+    }
+
+    function _find_cvc($data){
+        $var = '';
+        $cvcs = preg_match_all('/\d{3,4}<\/psp_CardSecurityCode>/', $data, $var);
+        return $var[0];
+    }
+
+    function _mask_exp_date($data){
+        $exp_date_key = "</psp_CardExpDate>";
+        $exp_dates = self::_find_exp_date($data);
+        foreach ($exp_dates as $exp_date){
+            $data = str_replace($exp_date, "****" . $exp_date_key, $data);
+        }
+        return $data;
+    }
+
+
+    function _find_exp_date($data){
+        $var = '';
+        $exp_dates = preg_match_all('/\d{4}<\/psp_CardExpDate>/', $data, $var);
+        return $var[0];
+    }
+
+    function _mask_c_number($data){
+        $c_number_key = "</psp_CardNumber>";
+
+        $c_numbers = self::_find_c_numbers($data);
+        foreach ($c_numbers as $c_number){
+            $c_number_len = strlen(substr($c_number,0, strlen($c_number) - strlen($c_number_key)));
+            $masked_chars = $c_number_len - 10;
+            $replacer = substr($c_number, 0, 6) . str_repeat("*", $masked_chars) . substr($c_number, strlen($c_number) - 4 - strlen($c_number_key), strlen($c_number));
+            $data = str_replace($c_number, $replacer, $data);
+        }
+        return $data;
+    }
+
+    function _find_c_numbers($data){
+        $var = '';
+        $c_numbers = preg_match_all('/\d{13,19}<\/psp_CardNumber>/', $data, $var);
+        return $var[0];
+    }
+    
+}
+    
