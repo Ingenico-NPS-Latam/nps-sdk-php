@@ -1,6 +1,6 @@
 {
     "name": "nps/php-sdk",
-    "description": "Sdk of NPS Services",
+    "description": "A Php SDK for Ingenico ePayments - NPS LatAm Services",
     "type": "library",
     "authors": [
         {
