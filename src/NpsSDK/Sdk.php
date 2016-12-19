@@ -10,9 +10,6 @@ namespace NpsSDK;
 require_once './vendor/autoload.php';
 use NpsSDK\Constants;
 use NpsSDK\SoapClientSdk;
-#include_once 'SoapClientSdk.php';
-#include_once 'Constants.php';
-#include_once 'Utils.php';
 
 class Sdk extends SoapClientSdk
 {
@@ -118,6 +115,86 @@ class Sdk extends SoapClientSdk
     function getIinDetails($params){
         $resp = $this->callClient(Constants::GET_IIN_DETAILS, $params);
         return $resp;
+    }
+    
+    function createPaymentMethod($params){
+        $resp = $this->callClient(Constants::CREATE_PAYMENT_METHOD, $params);
+        return $resp;
+    }
+
+    function createPaymentMethodFromPayment($params){
+        $resp = $this->callClient(Constants::CREATE_PAYMENT_METHOD_FROM_PAYMENT, $params);
+        return $resp;        
+    }
+
+    function retrievePaymentMethod($params){
+        $resp = $this->callClient(Constants::RETRIEVE_PAYMENT_METHOD, $params);
+        return $resp;        
+    }
+
+    function updatePaymentMethod($params){
+        $resp = $this->callClient(Constants::UPDATE_PAYMENT_METHOD, $params);
+        return $resp;
+    }
+
+    function deletePaymentMethod($params){
+        $resp = $this->callClient(Constants::DELETE_PAYMENT_METHOD, $params);
+        return $resp;        
+    }
+
+    function createCustomer($params){
+        $resp = $this->callClient(Constants::CREATE_CUSTOMER, $params);
+        return $resp;        
+    }
+
+    function retrieveCustomer($params){
+        $resp = $this->callClient(Constants::RETRIEVE_CUSTOMER, $params);
+        return $resp;        
+    }
+
+    function updateCustomer($params){
+        $resp = $this->callClient(Constants::UPDATE_CUSTOMER, $params);
+        return $resp;        
+    }
+
+    function deleteCustomer($params){
+        $resp = $this->callClient(Constants::DELETE_CUSTOMER, $params);
+        return $resp;        
+    }
+
+    function recachePaymentMethodToken($params){
+        $resp = $this->callClient(Constants::RECACHE_PAYMENT_METHOD_TOKEN, $params);
+        return $resp;        
+    }
+
+    function createPaymentMethodToken($params){
+        $resp = $this->callClient(Constants::CREATE_PAYMENT_METHOD_TOKEN, $params);
+        return $resp;        
+    }
+
+    function retrievePaymentMethodToken($params){
+        $resp = $this->callClient(Constants::RETRIEVE_PAYMENT_METHOD_TOKEN, $params);
+        return $resp;        
+    }
+
+    function createClientSession($params){
+        $resp = $this->callClient(Constants::CREATE_CLIENT_SESSION, $params);
+        return $resp;        
+    }
+
+    function getInstallmentsOptions($params){
+        $resp = $this->callClient(Constants::GET_INSTALLMENTS_OPTIONS, $params);
+        return $resp;        
+    }
+
+    function splitPayOnline2p($params){
+        $resp = $this->callClient(Constants::SPLIT_PAY_ONLINE_2P, $params);
+        return $resp;        
+    }
+
+    function splitAuthorize2p($params){
+        $resp = $this->callClient(Constants::SPLIT_AUTHORIZE_2P, $params);
+        return $resp;        
     }
     
 }

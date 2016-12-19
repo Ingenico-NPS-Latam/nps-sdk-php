@@ -37,9 +37,18 @@ class Constants
     const PRODUCTION_ENVIRONMENT = "production";
     const SANDBOX_ENVIRONMENT = "sandbox";
     const DEVELOPMENT_ENVIRONMENT = "development";
-    /*const STAGING_URL = dirname(__FILE__) . WSDL_FOLDER . STAGING_WSDL_FILE;
-    
-    const PRODUCTION_URL = dirname(__FILE__) . WSDL_FOLDER . PRODUCTION_WSDL_FILE;
-    const SANDBOX_URL = dirname(__FILE__) . WSDL_FOLDER . SANDBOX_WSDL_FILE;
-    const DEVELOPMENT_URL = dirname(__FILE__) . WSDL_FOLDER . DEVELOPMENT_WSDL_FILE;*/
+    const CREATE_PAYMENT_METHOD = "CreatePaymentMethod";
+    const CREATE_PAYMENT_METHOD_FROM_PAYMENT = "CreatePaymentMethodFromPayment";
+    const RETRIEVE_PAYMENT_METHOD = "RetrievePaymentMethod";
+    const UPDATE_PAYMENT_METHOD = "UpdatePaymentMethod";
+    const DELETE_PAYMENT_METHOD = "DeletePaymentMethod";
+    const CREATE_CUSTOMER = "CreateCustomer";
+    const RETRIEVE_CUSTOMER = "RetrieveCustomer";
+    const UPDATE_CUSTOMER = "UpdateCustomer";
+    const DELETE_CUSTOMER = "DeleteCustomer";
+    const RECACHE_PAYMENT_METHOD_TOKEN =  "RecachePaymentMethodToken";
+    const CREATE_PAYMENT_METHOD_TOKEN = "CreatePaymentMethodToken";
+    const RETRIEVE_PAYMENT_METHOD_TOKEN =  "RetrievePaymentMethodToken";
+    const CREATE_CLIENT_SESSION = "CreateClientSession";
+    const GET_INSTALLMENTS_OPTIONS = "GetInstallmentsOptions";
 }
