@@ -12,13 +12,13 @@ class Configuration
     public static $global;
     private $_environment = null;
     private $_secretKey = null;
-    public $_connectionTimeout = 60;
+    public $_connectionTimeout = 5;
     public $_executionTimeout = 60;
     private $_cert = null;
     private $_debug = True;
     private $_verifPeer = True;
-    private $_logLevel = "tbd";
-    private $_sanitize = "tbd";
+    private $_logLevel = Constants::INFO;
+    private $_sanitize = True;
     private $_logFile = "tbd";
     private $_logger = null;
     private $_pem = null;

@@ -1,10 +1,10 @@
-# PHP SDK
+#  PHP SDK
 
-##Availability
+## Availability
 Supports PHP 5.3 and above
 
 
-##How to install
+## How to install
 
 the SDK can be installed with composer
 
@@ -18,7 +18,7 @@ the SDK can be installed with composer
 $ composer require nps/nps-sdk
 ```
 
-##Configuration
+## Configuration
 
 It's a basic configuration of the SDK
 
@@ -49,13 +49,13 @@ $params = array(
     'psp_TxSource'         => 'WEB',
     'psp_MerchTxRef'       => 'ORDER56666-3',
     'psp_MerchOrderId'     => 'ORDER56666',
-    'psp_Amount'           => 1000,
+    'psp_Amount'           => '1000',
     'psp_NumPayments'      => '1',
     'psp_Currency'         => '032', 
     'psp_Country'          => 'ARG', 
-    'psp_Product'          => 14,
+    'psp_Product'          => '14',
     'psp_CustomerMail'     => 'john.doe@example.com',
-    'psp_CardNumber'       => 4507990000000010, 
+    'psp_CardNumber'       => '4507990000000010', 
     'psp_CardExpDate'      => '1903', 
     'psp_CardSecurityCode' => '306',
     'psp_SoftDescriptor'   => 'Sol Tropical E',
@@ -69,7 +69,7 @@ try{
 }
 ```
 
-##Environments
+## Environments
 
 ```php
 require_once './vendor/autoload.php';
@@ -81,7 +81,7 @@ Configuration::environment(Constants::SANDBOX_ENVIRONMENT);
 Configuration::environment(Constants::PRODUCTION_ENVIRONMENT);
 ```
 
-##Error handling
+## Error handling
 
 ApiException: This exception is raised when a ReadTimeout or a ConnectTimeout occurs.
 
@@ -100,7 +100,7 @@ try{
 }
 ```
 
-##Advanced configurations
+## Advanced configurations
 
 Nps SDK allows you to log what’s happening with you request inside of our SDK, it logs by default to stout.
 The SDK uses the custom logger that you use for your project.

@@ -51,4 +51,7 @@ class Constants
     const RETRIEVE_PAYMENT_METHOD_TOKEN =  "RetrievePaymentMethodToken";
     const CREATE_CLIENT_SESSION = "CreateClientSession";
     const GET_INSTALLMENTS_OPTIONS = "GetInstallmentsOptions";
+    const DEBUG = "DEBUG";
+    const INFO = "INFO";
+    const ERROR = "ERROR";
 }

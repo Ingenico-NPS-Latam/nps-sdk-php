@@ -6,4 +6,17 @@
  * Time: 8:36 AM
  */
 namespace NpsSDK;
-class ApiException extends Exception{}
+
+class ApiException extends Exception{
+    function __construct() {
+        $msg = "fuck";
+        parent::__construct($msg);
+    }
+}
+    
+class LogException extends Exception{
+    function __construct() {
+        $msg = "fuck";
+        parent::__construct($msg);
+    }
+}
