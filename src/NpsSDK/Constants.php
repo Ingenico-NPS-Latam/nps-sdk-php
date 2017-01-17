@@ -30,9 +30,9 @@ class Constants
     const GET_IIN_DETAILS = "GetIINDetails";
     const WSDL_FOLDER = "/NpsSDK/wsdl/";
     const STAGING_WSDL_FILE = "staging.wsdl";
-    const PRODUCTION_WSDL_FILE = "staging.wsdl";
-    const SANDBOX_WSDL_FILE = "staging.wsdl";
-    const DEVELOPMENT_WSDL_FILE = "staging.wsdl";
+    const PRODUCTION_WSDL_FILE = "production.wsdl";
+    const SANDBOX_WSDL_FILE = "sandbox.wsdl";
+    const DEVELOPMENT_WSDL_FILE = "development.wsdl";
     const STAGING_ENVIRONMENT = "staging";
     const PRODUCTION_ENVIRONMENT = "production";
     const SANDBOX_ENVIRONMENT = "sandbox";

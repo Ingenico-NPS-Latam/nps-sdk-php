@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://psp.nps.com.ar/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="https://psp.nps.com.ar/ws">
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://dev.nps.com.ar/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="https://dev.nps.com.ar/ws">
 <types>
-<xsd:schema targetNamespace="https://psp.nps.com.ar/ws"
+<xsd:schema targetNamespace="https://dev.nps.com.ar/ws"
 >
  <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
  <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
@@ -77,7 +77,7 @@
  </xsd:complexType>
  <xsd:complexType name="PersonStruct">
   <xsd:all>
-   <xsd:element name="FirstName" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="FirstName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="LastName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="MiddleName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="PhoneNumber1" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -92,6 +92,7 @@
  <xsd:complexType name="BillingDetailsStruct">
   <xsd:all>
    <xsd:element name="Invoice" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="InvoiceDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="InvoiceAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="InvoiceCurrency" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -178,15 +179,37 @@
    </xsd:restriction>
   </xsd:complexContent>
  </xsd:complexType>
- <xsd:complexType name="AirlineDetailsStruct">
+ <xsd:complexType name="cc">
+  <xsd:all>
+   <xsd:element name="CarrierCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="TravelAgentCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="TravelAgentName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Date" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Country" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="City" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Address" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="AirlineTicketStruct">
   <xsd:all>
    <xsd:element name="TicketNumber" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="Eticket" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Restricted" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Issue" type="tns:cc" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="TotalFareAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="TotalTaxAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="TotalFeeAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="AirlineDetailsStruct">
+  <xsd:all>
    <xsd:element name="PNR" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Legs" type="tns:ArrayOf_LegStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="Passengers" type="tns:ArrayOf_PassengerStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="Ticket" type="tns:AirlineTicketStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="VaultReferenceStruct">
+ <xsd:complexType name="VaultReference2pStruct">
   <xsd:all>
    <xsd:element name="PaymentMethodToken" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="PaymentMethodId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -244,7 +267,7 @@
    <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_VaultReference" type="tns:VaultReferenceStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference2pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="TaxesResponseStruct">
@@ -385,7 +408,7 @@
    <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_VaultReference" type="tns:VaultReferenceStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference2pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_Authorize_2p">
@@ -453,8 +476,6 @@
    <xsd:element name="psp_ExpTime" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_ExpMark" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerBankId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_CustomerDocType" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_CustomerDocNum" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_CustomerMail" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantMail" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -468,6 +489,16 @@
    <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_BankPayment_2p_BillingDetails">
+  <xsd:all>
+   <xsd:element name="Invoice" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="InvoiceDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="InvoiceAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="InvoiceCurrency" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_BankPayment_2p">
@@ -495,14 +526,13 @@
    <xsd:element name="psp_ExpTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_ExpMark" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerBankId" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_CustomerDocType" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_CustomerDocNum" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerMail" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchantMail" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsResponseStruct" nillable="false"/>
+   <xsd:element name="psp_BillingDetails" type="tns:RespuestaStruct_BankPayment_2p_BillingDetails" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_SplitPayOnLine_2p_Transactions">
@@ -524,6 +554,7 @@
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsRequestStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference2pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="ArrayOf_RequerimientoStruct_SplitPayOnLine_2p_Transactions">
@@ -567,26 +598,39 @@
    <xsd:element name="psp_Transactions" type="tns:ArrayOf_RequerimientoStruct_SplitPayOnLine_2p_Transactions" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SplitPayOnLine_3p_Transactions">
+ <xsd:complexType name="RespuestaStruct_SplitPayOnLine_2p_Transactions">
   <xsd:all>
-   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_TransactionId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchTxRef" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchAdditionalRef" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_PromotionCode" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CardNumber" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CardExpDate" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AuthorizationCode" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_BatchNro" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_TicketNumber" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_SequenceNumber" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClTrnId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClExternalMerchant" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClExternalTerminal" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClResponseMsg" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Plan" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_FirstPaymentDeferral" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_SoftDescriptor" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsResponseStruct" nillable="false"/>
+   <xsd:element name="psp_FraudScreeningResult" type="tns:FraudScreeningResultStruct" nillable="false"/>
+   <xsd:element name="psp_VerificationServicesResult" type="tns:VerificationServicesResultStruct" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="ArrayOf_RespuestaStruct_SplitPayOnLine_3p_Transactions">
+ <xsd:complexType name="ArrayOf_RespuestaStruct_SplitPayOnLine_2p_Transactions">
   <xsd:complexContent>
    <xsd:restriction base="SOAP-ENC:Array">
-    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:RespuestaStruct_SplitPayOnLine_3p_Transactions[]"/>
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:RespuestaStruct_SplitPayOnLine_2p_Transactions[]"/>
    </xsd:restriction>
   </xsd:complexContent>
  </xsd:complexType>
@@ -601,7 +645,7 @@
    <xsd:element name="psp_MerchOrderId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_UseMultipleProducts" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitPayOnLine_3p_Transactions" nillable="false"/>
+   <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitPayOnLine_2p_Transactions" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_SplitAuthorize_2p_Transactions">
@@ -623,6 +667,7 @@
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsRequestStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference2pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="ArrayOf_RequerimientoStruct_SplitAuthorize_2p_Transactions">
@@ -677,7 +722,7 @@
    <xsd:element name="psp_MerchOrderId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_UseMultipleProducts" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitPayOnLine_3p_Transactions" nillable="false"/>
+   <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitPayOnLine_2p_Transactions" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_PayOnLine_3p">
@@ -824,6 +869,29 @@
    <xsd:element name="psp_Transactions" type="tns:ArrayOf_RequerimientoStruct_SplitPayOnLine_3p_Transactions" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_SplitPayOnLine_3p_Transactions">
+  <xsd:all>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_TransactionId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchTxRef" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchAdditionalRef" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PromotionCode" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Amount" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Plan" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_FirstPaymentDeferral" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_SoftDescriptor" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="ArrayOf_RespuestaStruct_SplitPayOnLine_3p_Transactions">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:RespuestaStruct_SplitPayOnLine_3p_Transactions[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_SplitPayOnLine_3p">
   <xsd:all>
    <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
@@ -847,11 +915,16 @@
    <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitPayOnLine_3p_Transactions" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
+ <xsd:complexType name="VaultReference3pStruct">
+  <xsd:all>
+   <xsd:element name="CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_Authorize_3p">
   <xsd:all>
    <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_TxSource" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_TxSource" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_MerchTxRef" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_MerchOrderId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_MerchAdditionalRef" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -894,6 +967,7 @@
    <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_Authorize_3p">
@@ -1025,12 +1099,12 @@
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_UseMultipleProducts" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerMail" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchantMail" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_UseMultipleProducts" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Transactions" type="tns:ArrayOf_RespuestaStruct_SplitAuthorize_3p_Transactions" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
@@ -1101,8 +1175,6 @@
    <xsd:element name="psp_MinAmount" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_ExpTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_ExpMark" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_CustomerDocType" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_CustomerDocNum" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerMail" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchantMail" type="xsd:string" nillable="false"/>
@@ -1271,21 +1343,22 @@
    <xsd:element name="psp_Country" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PaymentMethodToken" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_GetInstallmentsOptions_InstallmentsOptions">
+ <xsd:complexType name="InstallmentsOptionsStruct">
   <xsd:all>
    <xsd:element name="NumPayments" type="xsd:string" nillable="false"/>
    <xsd:element name="InstallmentAmount" type="xsd:string" nillable="false"/>
    <xsd:element name="InterestRate" type="xsd:string" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="ArrayOf_RespuestaStruct_GetInstallmentsOptions_InstallmentsOptions">
+ <xsd:complexType name="ArrayOf_InstallmentsOptionsStruct">
   <xsd:complexContent>
    <xsd:restriction base="SOAP-ENC:Array">
-    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:RespuestaStruct_GetInstallmentsOptions_InstallmentsOptions[]"/>
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:InstallmentsOptionsStruct[]"/>
    </xsd:restriction>
   </xsd:complexContent>
  </xsd:complexType>
@@ -1300,7 +1373,8 @@
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_InstallmentsOptions" type="tns:ArrayOf_RespuestaStruct_GetInstallmentsOptions_InstallmentsOptions" nillable="false"/>
+   <xsd:element name="psp_InstallmentsOptions" type="tns:ArrayOf_InstallmentsOptionsStruct" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="CardInputDetailsStruct">
@@ -1315,11 +1389,11 @@
   <xsd:all>
    <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_Product" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_CardInputDetails" type="tns:CardInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_CardInputDetails" type="tns:CardInputDetailsStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="CardOutputDetailsStruct">
@@ -1328,21 +1402,11 @@
    <xsd:element name="ExpirationDate" type="xsd:string" nillable="false"/>
    <xsd:element name="ExpirationYear" type="xsd:string" nillable="false"/>
    <xsd:element name="ExpirationMonth" type="xsd:string" nillable="false"/>
-   <xsd:element name="SecurityCode" type="xsd:string" nillable="false"/>
    <xsd:element name="HolderName" type="xsd:string" nillable="true"/>
    <xsd:element name="IIN" type="xsd:string" nillable="false"/>
    <xsd:element name="Last4" type="xsd:string" nillable="false"/>
    <xsd:element name="MaskedNumber" type="xsd:string" nillable="false"/>
    <xsd:element name="MaskedNumberAlternative" type="xsd:string" nillable="false"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_CreatePaymentMethodToken_BillingDetails">
-  <xsd:all>
-   <xsd:element name="Invoice" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="InvoiceAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="InvoiceCurrency" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_CreatePaymentMethodToken">
@@ -1351,12 +1415,360 @@
    <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
-   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PaymentMethodToken" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
-   <xsd:element name="psp_BillingDetails" type="tns:RespuestaStruct_CreatePaymentMethodToken_BillingDetails" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_AlreadyUsed" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_UpdatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_RetrievePaymentMethodToken">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethodToken" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_RetrievePaymentMethodToken">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethodToken" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_AlreadyUsed" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_UpdatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_RecachePaymentMethodToken">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CardSecurityCode" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_RecachePaymentMethodToken">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethodToken" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_AlreadyUsed" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_UpdatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_CreateClientSession">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_CreateClientSession">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CreatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="PaymentMethodInputDetailsStruct">
+  <xsd:all>
+   <xsd:element name="PaymentMethodToken" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Product" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="CardInputDetails" type="tns:CardInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_CreatePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodInputDetailsStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SetAsCustomerDefault" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="PaymentMethodOutputDetailsStruct">
+  <xsd:all>
+   <xsd:element name="PaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="FingerPrint" type="xsd:string" nillable="false"/>
+   <xsd:element name="Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="CreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="UpdatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_CreatePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_CreatePaymentMethodFromPayment">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_TransactionId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SetAsCustomerDefault" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_CreatePaymentMethodFromPayment">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_RetrievePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_RetrievePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="CardInputUpdateDetailsStruct">
+  <xsd:all>
+   <xsd:element name="ExpirationDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="HolderName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_UpdatePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CardInputDetails" type="tns:CardInputUpdateDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_UpdatePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_DeletePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_DeletePaymentMethod">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_CreateCustomer">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="PaymentMethodsOutputDetailsStruct">
+  <xsd:all>
+   <xsd:element name="PaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="Product" type="xsd:string" nillable="false"/>
+   <xsd:element name="CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="FingerPrint" type="xsd:string" nillable="false"/>
+   <xsd:element name="Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="CreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="UpdatedAt" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="ArrayOf_PaymentMethodsOutputDetailsStruct">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:PaymentMethodsOutputDetailsStruct[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_CreateCustomer">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethods" type="tns:ArrayOf_PaymentMethodsOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_RetrieveCustomer">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_RetrieveCustomer">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethods" type="tns:ArrayOf_PaymentMethodsOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_UpdateCustomer">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_UpdateCustomer">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethods" type="tns:ArrayOf_PaymentMethodsOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_DeleteCustomer">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_DeleteCustomer">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_EmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AlternativeEmailAddress" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountID" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_AccountCreatedAt" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false"/>
+   <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false"/>
+   <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PaymentMethods" type="tns:ArrayOf_PaymentMethodsOutputDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_SimpleQueryTx">
@@ -1396,6 +1808,7 @@
  <xsd:complexType name="RespuestaStruct_SimpleQueryTx_BillingDetails">
   <xsd:all>
    <xsd:element name="Invoice" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="InvoiceDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="InvoiceAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="InvoiceCurrency" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -1423,10 +1836,10 @@
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_SimpleQueryTx_AirlineDetails">
   <xsd:all>
-   <xsd:element name="TicketNumber" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="PNR" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Legs" type="tns:ArrayOf_LegStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="Passengers" type="tns:ArrayOf_PassengerStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="Ticket" type="tns:AirlineTicketStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_SimpleQueryTx_Transactions">
@@ -1523,6 +1936,28 @@
    <xsd:element name="psp_QueryCriteriaId" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
    <xsd:element name="psp_CardNumber" type="xsd:string" nillable="false"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RequerimientoStruct_QueryCardDetails">
+  <xsd:all>
+   <xsd:element name="psp_Version" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_QueryCriteria" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_QueryCriteriaId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="RespuestaStruct_QueryCardDetails">
+  <xsd:all>
+   <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseMsg" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_ResponseExtended" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_QueryCriteria" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_QueryCriteriaId" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false"/>
+   <xsd:element name="psp_CardOutputDetails" type="tns:CardOutputDetailsStruct" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_QueryTxs">
@@ -1623,6 +2058,7 @@
    <xsd:element name="psp_IIN" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_ClientSession" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_GetIINDetails">
@@ -1793,6 +2229,54 @@
   <part name="Requerimiento" type="tns:RequerimientoStruct_CreatePaymentMethodToken" /></message>
 <message name="CreatePaymentMethodTokenResponse">
   <part name="Respuesta" type="tns:RespuestaStruct_CreatePaymentMethodToken" /></message>
+<message name="RetrievePaymentMethodTokenRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_RetrievePaymentMethodToken" /></message>
+<message name="RetrievePaymentMethodTokenResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_RetrievePaymentMethodToken" /></message>
+<message name="RecachePaymentMethodTokenRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_RecachePaymentMethodToken" /></message>
+<message name="RecachePaymentMethodTokenResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_RecachePaymentMethodToken" /></message>
+<message name="CreateClientSessionRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_CreateClientSession" /></message>
+<message name="CreateClientSessionResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_CreateClientSession" /></message>
+<message name="CreatePaymentMethodRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_CreatePaymentMethod" /></message>
+<message name="CreatePaymentMethodResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_CreatePaymentMethod" /></message>
+<message name="CreatePaymentMethodFromPaymentRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_CreatePaymentMethodFromPayment" /></message>
+<message name="CreatePaymentMethodFromPaymentResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_CreatePaymentMethodFromPayment" /></message>
+<message name="RetrievePaymentMethodRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_RetrievePaymentMethod" /></message>
+<message name="RetrievePaymentMethodResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_RetrievePaymentMethod" /></message>
+<message name="UpdatePaymentMethodRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_UpdatePaymentMethod" /></message>
+<message name="UpdatePaymentMethodResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_UpdatePaymentMethod" /></message>
+<message name="DeletePaymentMethodRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_DeletePaymentMethod" /></message>
+<message name="DeletePaymentMethodResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_DeletePaymentMethod" /></message>
+<message name="CreateCustomerRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_CreateCustomer" /></message>
+<message name="CreateCustomerResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_CreateCustomer" /></message>
+<message name="RetrieveCustomerRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_RetrieveCustomer" /></message>
+<message name="RetrieveCustomerResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_RetrieveCustomer" /></message>
+<message name="UpdateCustomerRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_UpdateCustomer" /></message>
+<message name="UpdateCustomerResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_UpdateCustomer" /></message>
+<message name="DeleteCustomerRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_DeleteCustomer" /></message>
+<message name="DeleteCustomerResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_DeleteCustomer" /></message>
 <message name="SimpleQueryTxRequest">
   <part name="Requerimiento" type="tns:RequerimientoStruct_SimpleQueryTx" /></message>
 <message name="SimpleQueryTxResponse">
@@ -1801,6 +2285,10 @@
   <part name="Requerimiento" type="tns:RequerimientoStruct_QueryCardNumber" /></message>
 <message name="QueryCardNumberResponse">
   <part name="Respuesta" type="tns:RespuestaStruct_QueryCardNumber" /></message>
+<message name="QueryCardDetailsRequest">
+  <part name="Requerimiento" type="tns:RequerimientoStruct_QueryCardDetails" /></message>
+<message name="QueryCardDetailsResponse">
+  <part name="Respuesta" type="tns:RespuestaStruct_QueryCardDetails" /></message>
 <message name="QueryTxsRequest">
   <part name="Requerimiento" type="tns:RequerimientoStruct_QueryTxs" /></message>
 <message name="QueryTxsResponse">
@@ -1882,6 +2370,54 @@
     <input message="tns:CreatePaymentMethodTokenRequest"/>
     <output message="tns:CreatePaymentMethodTokenResponse"/>
   </operation>
+  <operation name="RetrievePaymentMethodToken">
+    <input message="tns:RetrievePaymentMethodTokenRequest"/>
+    <output message="tns:RetrievePaymentMethodTokenResponse"/>
+  </operation>
+  <operation name="RecachePaymentMethodToken">
+    <input message="tns:RecachePaymentMethodTokenRequest"/>
+    <output message="tns:RecachePaymentMethodTokenResponse"/>
+  </operation>
+  <operation name="CreateClientSession">
+    <input message="tns:CreateClientSessionRequest"/>
+    <output message="tns:CreateClientSessionResponse"/>
+  </operation>
+  <operation name="CreatePaymentMethod">
+    <input message="tns:CreatePaymentMethodRequest"/>
+    <output message="tns:CreatePaymentMethodResponse"/>
+  </operation>
+  <operation name="CreatePaymentMethodFromPayment">
+    <input message="tns:CreatePaymentMethodFromPaymentRequest"/>
+    <output message="tns:CreatePaymentMethodFromPaymentResponse"/>
+  </operation>
+  <operation name="RetrievePaymentMethod">
+    <input message="tns:RetrievePaymentMethodRequest"/>
+    <output message="tns:RetrievePaymentMethodResponse"/>
+  </operation>
+  <operation name="UpdatePaymentMethod">
+    <input message="tns:UpdatePaymentMethodRequest"/>
+    <output message="tns:UpdatePaymentMethodResponse"/>
+  </operation>
+  <operation name="DeletePaymentMethod">
+    <input message="tns:DeletePaymentMethodRequest"/>
+    <output message="tns:DeletePaymentMethodResponse"/>
+  </operation>
+  <operation name="CreateCustomer">
+    <input message="tns:CreateCustomerRequest"/>
+    <output message="tns:CreateCustomerResponse"/>
+  </operation>
+  <operation name="RetrieveCustomer">
+    <input message="tns:RetrieveCustomerRequest"/>
+    <output message="tns:RetrieveCustomerResponse"/>
+  </operation>
+  <operation name="UpdateCustomer">
+    <input message="tns:UpdateCustomerRequest"/>
+    <output message="tns:UpdateCustomerResponse"/>
+  </operation>
+  <operation name="DeleteCustomer">
+    <input message="tns:DeleteCustomerRequest"/>
+    <output message="tns:DeleteCustomerResponse"/>
+  </operation>
   <operation name="SimpleQueryTx">
     <input message="tns:SimpleQueryTxRequest"/>
     <output message="tns:SimpleQueryTxResponse"/>
@@ -1889,6 +2425,10 @@
   <operation name="QueryCardNumber">
     <input message="tns:QueryCardNumberRequest"/>
     <output message="tns:QueryCardNumberResponse"/>
+  </operation>
+  <operation name="QueryCardDetails">
+    <input message="tns:QueryCardDetailsRequest"/>
+    <output message="tns:QueryCardDetailsResponse"/>
   </operation>
   <operation name="QueryTxs">
     <input message="tns:QueryTxsRequest"/>
@@ -1914,119 +2454,184 @@
 <binding name="PaymentServicePlatformBinding" type="tns:PaymentServicePlatformPortType">
   <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
   <operation name="PayOnLine_2p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/PayOnLine_2p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/PayOnLine_2p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="Authorize_2p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/Authorize_2p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/Authorize_2p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="BankPayment_2p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/BankPayment_2p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/BankPayment_2p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="SplitPayOnLine_2p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/SplitPayOnLine_2p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/SplitPayOnLine_2p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="SplitAuthorize_2p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/SplitAuthorize_2p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/SplitAuthorize_2p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="PayOnLine_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/PayOnLine_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/PayOnLine_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="SplitPayOnLine_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/SplitPayOnLine_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/SplitPayOnLine_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="Authorize_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/Authorize_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/Authorize_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="SplitAuthorize_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/SplitAuthorize_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/SplitAuthorize_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="BankPayment_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/BankPayment_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/BankPayment_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="CashPayment_3p">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/CashPayment_3p" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CashPayment_3p" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="Capture">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/Capture" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/Capture" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="Refund">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/Refund" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/Refund" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="GetInstallmentsOptions">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/GetInstallmentsOptions" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/GetInstallmentsOptions" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="CreatePaymentMethodToken">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/CreatePaymentMethodToken" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CreatePaymentMethodToken" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="RetrievePaymentMethodToken">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/RetrievePaymentMethodToken" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="RecachePaymentMethodToken">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/RecachePaymentMethodToken" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="CreateClientSession">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CreateClientSession" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="CreatePaymentMethod">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CreatePaymentMethod" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="CreatePaymentMethodFromPayment">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CreatePaymentMethodFromPayment" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="RetrievePaymentMethod">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/RetrievePaymentMethod" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="UpdatePaymentMethod">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/UpdatePaymentMethod" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="DeletePaymentMethod">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/DeletePaymentMethod" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="CreateCustomer">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/CreateCustomer" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="RetrieveCustomer">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/RetrieveCustomer" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="UpdateCustomer">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/UpdateCustomer" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="DeleteCustomer">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/DeleteCustomer" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="SimpleQueryTx">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/SimpleQueryTx" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/SimpleQueryTx" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="QueryCardNumber">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/QueryCardNumber" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/QueryCardNumber" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="QueryCardDetails">
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/QueryCardDetails" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="QueryTxs">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/QueryTxs" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/QueryTxs" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="GetIINDetails">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/GetIINDetails" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/GetIINDetails" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="ChangeSecretKey">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/ChangeSecretKey" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/ChangeSecretKey" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="FraudScreening">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/FraudScreening" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/FraudScreening" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
   <operation name="NotifyFraudScreeningReview">
-    <soap:operation soapAction="https://psp.nps.com.ar/ws.php/NotifyFraudScreeningReview" style="rpc"/>
-    <input><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="https://psp.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+    <soap:operation soapAction="https://dev.nps.com.ar/ws.php/NotifyFraudScreeningReview" style="rpc"/>
+    <input><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="https://dev.nps.com.ar/ws" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
 </binding>
 <service name="PaymentServicePlatform">
   <port name="PaymentServicePlatformPort" binding="tns:PaymentServicePlatformBinding">
-    <soap:address location="https://psp.nps.com.ar:443/ws.php"/>
+    <soap:address location="https://dev.nps.com.ar:443/ws.php"/>
   </port>
 </service>
 </definitions>
