@@ -7,16 +7,14 @@
  */
 namespace NpsSDK;
 
-class ApiException extends Exception{
-    function __construct() {
-        $msg = "fuck";
+class ApiException extends \Exception{
+    function __construct($msg) {
         parent::__construct($msg);
     }
 }
     
-class LogException extends Exception{
-    function __construct() {
-        $msg = "fuck";
+class LogException extends \Exception{
+    function __construct($msg) {
         parent::__construct($msg);
     }
 }

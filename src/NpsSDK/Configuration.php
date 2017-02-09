@@ -12,11 +12,11 @@ class Configuration
     public static $global;
     private $_environment = null;
     private $_secretKey = null;
-    public $_connectionTimeout = 5;
-    public $_executionTimeout = 60;
+    public $_connectionTimeout = 10000;
+    public $_executionTimeout = 60000;
     private $_cert = null;
     private $_debug = True;
-    private $_verifPeer = True;
+    private $_verifPeer = TRUE;
     private $_logLevel = Constants::INFO;
     private $_sanitize = True;
     private $_logFile = "tbd";
@@ -49,11 +49,12 @@ class Configuration
              $url = dirname(__DIR__) . Constants::WSDL_FOLDER . Constants::DEVELOPMENT_WSDL_FILE;
              break;
         }
+        print_r($url);
         return $url;
     }
     
     public static function executionTimeout($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getexecutionTimeout();
         }
         self::$global->setexecutionTimeout($value);
@@ -71,7 +72,7 @@ class Configuration
     }
     
     public static function connectionTimeout($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getConnectionTimeout();
         }
         self::$global->setConnectionTimeout($value);
@@ -90,7 +91,7 @@ class Configuration
     
     
     public static function logLevel($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getLogLevel();
         }
         self::$global->setLogLevel($value);
@@ -107,9 +108,27 @@ class Configuration
         return $this->_logLevel;
     }
     
+    public static function verifyPeer($value=null){
+        if (is_null($value)) {
+            return self::$global->getVerifyPeer();
+        }
+        self::$global->setVerifyPeer($value);
+    }    
+    /**
+     * Do not use this method directly. Pass in the environment to the constructor.
+     */
+    public function setVerifyPeer($value)
+    {
+        $this->_verifPeer = $value;
+    }
+    
+    public function getVerifyPeer(){
+        return $this->_verifPeer;
+    }
+    
     
     public static function debug($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getDebug();
         }
         self::$global->setDebug($value);
@@ -129,7 +148,7 @@ class Configuration
     
     
     public static function sanitize($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getSanitize();
         }
         self::$global->setSanitize($value);
@@ -149,7 +168,7 @@ class Configuration
     
     
     public static function secretKey($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getSecretKey();
         }
         self::$global->setSecretKey($value);
@@ -167,7 +186,7 @@ class Configuration
     }
     
     public static function environment($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getEnvironment();
         }
         self::$global->setEnvironment($value);
@@ -187,7 +206,7 @@ class Configuration
     
     
     public static function logger($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getLogger();
         }
         self::$global->setLogger($value);
@@ -205,7 +224,7 @@ class Configuration
     }
     
     public static function cert($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getCert();
         }
         self::$global->setCert($value);
@@ -223,7 +242,7 @@ class Configuration
     }
     
     public static function certKey($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getCertKey();
         }
         self::$global->setCertKey($value);
@@ -242,7 +261,7 @@ class Configuration
     
     
     public static function proxyUrl($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getProxyUrl();
         }
         self::$global->setProxyUrl($value);
@@ -261,7 +280,7 @@ class Configuration
     }
     
     public static function proxyUser($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getProxyUser();
         }
         self::$global->setProxyUser($value);
@@ -280,7 +299,7 @@ class Configuration
     }
     
     public static function proxyPass($value=null){
-        if (empty($value)) {
+        if (is_null($value)) {
             return self::$global->getProxyPassword();
         }
         self::$global->setProxyPassword($value);
@@ -297,12 +316,6 @@ class Configuration
     public function getProxyPassword(){
         return $this->_proxy_password;
     }
-    
-    
-    
-    
-    
-    
     
     
     /**

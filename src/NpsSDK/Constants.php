@@ -27,6 +27,7 @@ class Constants
     const SPLIT_PAY_ONLINE_2P = "SplitPayOnLine_2p";
     const SPLIT_AUTHORIZE_2P = "SplitAuthorize_2p";
     const QUERY_CARD_NUMBER = "QueryCardNumber";
+    const QUERY_CARD_DETAILS = "QueryCardDetails";
     const GET_IIN_DETAILS = "GetIINDetails";
     const WSDL_FOLDER = "/NpsSDK/wsdl/";
     const STAGING_WSDL_FILE = "staging.wsdl";

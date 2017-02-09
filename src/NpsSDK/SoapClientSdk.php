@@ -1,8 +1,7 @@
 <?php
 namespace NpsSDK;
-require_once './vendor/autoload.php';
 use SoapClient;
-
+use NpsSDK\ApiException;
 
 /**
  * Description of PspSoapClient
@@ -20,17 +19,13 @@ class SoapClientSdk extends SoapClient {
   
   const ERROR_CONNECT = 1000;
   const ERROR_TIMEOUT = 1001;    
-  
-  #const CERT_FOLDER = "Certs";
+
   
     function __construct() {
     $this->_logger = Configuration::logger();
-    
     $options = array(
-                  #'stream_context' => $context,
                   "trace"=>(Configuration::debug() ? 1 : 0),
                   "exceptions"=>1,
-       #           "local_cert" => $this->cert_abspath,
                   "connection_timeout" => Configuration::connectionTimeout(),
                   "execution_timeout" => Configuration::executionTimeout()
                   );
@@ -38,9 +33,6 @@ class SoapClientSdk extends SoapClient {
     parent::__construct(Configuration::url(), $options);
     }
 
-    private function __setTimeout($timeout) {
-      if (!is_int($timeout) && !is_null($timeout)) { throw new Exception("Invalid timeout value"); }   $this->_execution_timeout = $timeout; 
-    }   
 
     private function log($data){
         if (Configuration::debug() && $this->_logger){
@@ -73,9 +65,9 @@ class SoapClientSdk extends SoapClient {
       curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
       curl_setopt($ch, CURLOPT_HEADER, FALSE);
       curl_setopt($ch, CURLOPT_HTTPHEADER, array("SOAPAction: ".$action,"Content-Type: text/xml"));
-      curl_setopt($ch, CURLOPT_TIMEOUT, Configuration::executionTimeout());
-      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, Configuration::connectionTimeout());
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_TIMEOUT_MS, Configuration::executionTimeout());
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, Configuration::connectionTimeout());
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, (Configuration::verifyPeer() ? '1':'0'));
       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
       curl_setopt($ch, CURLOPT_PROXY, Configuration::proxyUrl());
       if (Configuration::proxyUser() != null){
@@ -83,20 +75,17 @@ class SoapClientSdk extends SoapClient {
           curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
       }
       
-      
-      //curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-
 
       $response = curl_exec($ch);
       $curl_info = curl_getinfo($ch);
 
       $this->log($response);
 
-      if( curl_errno($ch) ) {
+      if( curl_errno($ch) ) {          
         if ($curl_info['connect_time'] <= 0) {
-          throw new Exception(curl_errno($ch)." - ".curl_error($ch), self::ERROR_CONNECT);
+          throw new ApiException("Timeout Ocurred", self::ERROR_CONNECT);
         }else {
-          throw new Exception(curl_errno($ch)." - ".curl_error($ch), self::ERROR_TIMEOUT);
+          throw new \Exception(curl_errno($ch)." - ".curl_error($ch));
         }
       }   
 

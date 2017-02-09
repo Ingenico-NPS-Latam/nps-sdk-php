@@ -7,7 +7,7 @@
 
 
 namespace NpsSDK;
-require_once './vendor/autoload.php';
+require_once 'Errors.php';
 use NpsSDK\Constants;
 use NpsSDK\SoapClientSdk;
 
@@ -30,13 +30,8 @@ class Sdk extends SoapClientSdk
             $arguments = Utils::sanitize($arguments);
         }
         $wrapped_args[] = $arguments;
-        try{
-            $resp = $this->__soapCall($name, $wrapped_args);
-        } catch (Exception $e){
-            throw new ApiException("Connection Timeout");
-        }
+        $resp = $this->__soapCall($name, $wrapped_args);
         return $resp;
-
     }
 
     function payOnline2p($params){
@@ -201,6 +196,11 @@ class Sdk extends SoapClientSdk
 
     function splitAuthorize2p($params){
         $resp = $this->callClient(Constants::SPLIT_AUTHORIZE_2P, $params);
+        return $resp;        
+    }
+    
+    function queryCardDetails($params){
+        $resp = $this->callClient(Constants::QUERY_CARD_DETAILS, $params);
         return $resp;        
     }
     

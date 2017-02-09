@@ -16,7 +16,22 @@ class Utils{
             Constants::CHANGE_SECRET_KEY,
             Constants::NOTIFY_FRAUD_SCREENING_REVIEW,
             Constants::GET_IIN_DETAILS,
-            Constants::QUERY_CARD_NUMBER];
+            Constants::QUERY_CARD_NUMBER,
+            Constants::CREATE_PAYMENT_METHOD,
+            Constants::CREATE_PAYMENT_METHOD_FROM_PAYMENT,
+            Constants::RETRIEVE_PAYMENT_METHOD,
+            Constants::UPDATE_PAYMENT_METHOD,
+            Constants::DELETE_PAYMENT_METHOD,
+            Constants::CREATE_CUSTOMER,
+            Constants::RETRIEVE_CUSTOMER,
+            Constants::UPDATE_CUSTOMER,
+            Constants::DELETE_CUSTOMER,
+            Constants::RECACHE_PAYMENT_METHOD_TOKEN,
+            Constants::CREATE_PAYMENT_METHOD_TOKEN,
+            Constants::RETRIEVE_PAYMENT_METHOD_TOKEN,
+            Constants::CREATE_CLIENT_SESSION,
+            Constants::GET_INSTALLMENTS_OPTIONS,
+            Constants::QUERY_CARD_DETAILS];
     }
 
     function addExtraInf($params)
