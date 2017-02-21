@@ -181,7 +181,7 @@
  </xsd:complexType>
  <xsd:complexType name="cc">
   <xsd:all>
-   <xsd:element name="CarrierCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="CarrierPrefixCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="TravelAgentCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="TravelAgentName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Date" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -226,7 +226,6 @@
    <xsd:element name="psp_MerchAdditionalRef" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Recurrent" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
@@ -368,7 +367,6 @@
    <xsd:element name="psp_MerchAdditionalRef" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Recurrent" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
@@ -535,6 +533,11 @@
    <xsd:element name="psp_BillingDetails" type="tns:RespuestaStruct_BankPayment_2p_BillingDetails" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
+ <xsd:complexType name="VaultReference3pStruct">
+  <xsd:all>
+   <xsd:element name="CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+  </xsd:all>
+ </xsd:complexType>
  <xsd:complexType name="RequerimientoStruct_SplitPayOnLine_2p_Transactions">
   <xsd:all>
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
@@ -545,7 +548,6 @@
    <xsd:element name="psp_CardExpDate" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_CardSecurityCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CardHolderName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Plan" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -589,6 +591,7 @@
    <xsd:element name="psp_3dSecure_ECI" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_3dSecure_Secured" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -658,7 +661,6 @@
    <xsd:element name="psp_CardExpDate" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_CardSecurityCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CardHolderName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Plan" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -739,7 +741,6 @@
    <xsd:element name="psp_FrmTimeout" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Product" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
@@ -766,6 +767,7 @@
    <xsd:element name="psp_MasterArg_AVS_PostalCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MasterArg_AVS_BranchEntity" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsRequestStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -860,6 +862,7 @@
    <xsd:element name="psp_MasterArg_AVS_PostalCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MasterArg_AVS_BranchEntity" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -929,7 +932,6 @@
    <xsd:element name="psp_FrmTimeout" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Amount" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_NumPayments" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_PaymentAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Currency" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Country" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_Product" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
@@ -955,6 +957,7 @@
    <xsd:element name="psp_MasterArg_AVS_PostalCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MasterArg_AVS_BranchEntity" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsRequestStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -1047,6 +1050,7 @@
    <xsd:element name="psp_MasterArg_AVS_PostalCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MasterArg_AVS_BranchEntity" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_VaultReference" type="tns:VaultReference3pStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
@@ -1775,67 +1779,6 @@
    <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_MerchantAdditionalDetails">
-  <xsd:all>
-   <xsd:element name="Type" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="SellerDetails" type="tns:SellerDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="SdkInfo" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="ShoppingCartInfo" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="ShoppingCartPluginInfo" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_CustomerAdditionalDetails">
-  <xsd:all>
-   <xsd:element name="EmailAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="AlternativeEmailAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="IPAddress" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="AccountID" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="AccountCreatedAt" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="AccountPreviousActivity" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="AccountHasCredentials" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="DeviceType" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="DeviceFingerPrint" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="BrowserLanguage" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="HttpUserAgent" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_BillingDetails">
-  <xsd:all>
-   <xsd:element name="Invoice" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="InvoiceDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="InvoiceAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="InvoiceCurrency" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_ShippingDetails">
-  <xsd:all>
-   <xsd:element name="TrackingNumber" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Method" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="Carrier" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="DeliveryDate" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="FreightAmount" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="GiftMessage" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="GiftWrapping" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="PrimaryRecipient" type="tns:PersonStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="SecondaryRecipient" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_OrderDetails">
-  <xsd:all>
-   <xsd:element name="OrderItems" type="tns:ArrayOf_OrderItemStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
- <xsd:complexType name="RespuestaStruct_SimpleQueryTx_AirlineDetails">
-  <xsd:all>
-   <xsd:element name="PNR" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Legs" type="tns:ArrayOf_LegStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="Passengers" type="tns:ArrayOf_PassengerStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="Ticket" type="tns:AirlineTicketStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
-  </xsd:all>
- </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_SimpleQueryTx_Transactions">
   <xsd:all>
    <xsd:element name="psp_ResponseCod" type="xsd:string" nillable="false"/>
@@ -1890,12 +1833,12 @@
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsResponseStruct" nillable="false"/>
    <xsd:element name="psp_FraudScreeningResult" type="tns:FraudScreeningResultStruct" nillable="false"/>
    <xsd:element name="psp_VerificationServicesResult" type="tns:VerificationServicesResultStruct" nillable="false"/>
-   <xsd:element name="psp_MerchantAdditionalDetails" type="tns:RespuestaStruct_SimpleQueryTx_MerchantAdditionalDetails" nillable="false"/>
-   <xsd:element name="psp_CustomerAdditionalDetails" type="tns:RespuestaStruct_SimpleQueryTx_CustomerAdditionalDetails" nillable="false"/>
-   <xsd:element name="psp_BillingDetails" type="tns:RespuestaStruct_SimpleQueryTx_BillingDetails" nillable="false"/>
-   <xsd:element name="psp_ShippingDetails" type="tns:RespuestaStruct_SimpleQueryTx_ShippingDetails" nillable="false"/>
-   <xsd:element name="psp_OrderDetails" type="tns:RespuestaStruct_SimpleQueryTx_OrderDetails" nillable="false"/>
-   <xsd:element name="psp_AirlineDetails" type="tns:RespuestaStruct_SimpleQueryTx_AirlineDetails" nillable="false"/>
+   <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_SimpleQueryTx">
@@ -2018,12 +1961,12 @@
    <xsd:element name="psp_AmountAdditionalDetails" type="tns:AmountAdditionalDetailsResponseStruct" nillable="false"/>
    <xsd:element name="psp_FraudScreeningResult" type="tns:FraudScreeningResultStruct" nillable="false"/>
    <xsd:element name="psp_VerificationServicesResult" type="tns:VerificationServicesResultStruct" nillable="false"/>
-   <xsd:element name="psp_MerchantAdditionalDetails" type="tns:RespuestaStruct_SimpleQueryTx_MerchantAdditionalDetails" nillable="false"/>
-   <xsd:element name="psp_CustomerAdditionalDetails" type="tns:RespuestaStruct_SimpleQueryTx_CustomerAdditionalDetails" nillable="false"/>
-   <xsd:element name="psp_BillingDetails" type="tns:RespuestaStruct_SimpleQueryTx_BillingDetails" nillable="false"/>
-   <xsd:element name="psp_ShippingDetails" type="tns:RespuestaStruct_SimpleQueryTx_ShippingDetails" nillable="false"/>
-   <xsd:element name="psp_OrderDetails" type="tns:RespuestaStruct_SimpleQueryTx_OrderDetails" nillable="false"/>
-   <xsd:element name="psp_AirlineDetails" type="tns:RespuestaStruct_SimpleQueryTx_AirlineDetails" nillable="false"/>
+   <xsd:element name="psp_MerchantAdditionalDetails" type="tns:MerchantAdditionalDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_CustomerAdditionalDetails" type="tns:CustomerAdditionalDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_BillingDetails" type="tns:BillingDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_ShippingDetails" type="tns:ShippingDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_OrderDetails" type="tns:OrderDetailsStruct" nillable="false"/>
+   <xsd:element name="psp_AirlineDetails" type="tns:AirlineDetailsStruct" nillable="false"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="ArrayOf_RespuestaStruct_QueryTxs_Transactions">
