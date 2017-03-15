@@ -7,8 +7,14 @@
  */
 namespace NpsSDK;
 
-class Utils{
-    function getMerchDetNotAddServices(){
+class Utils
+{
+	public function __call( $name, $arguments )
+	{
+		return call_user_func_array( __CLASS__.'::'.$name, $arguments );
+	}
+
+    public static function getMerchDetNotAddServices(){
         return [Constants::QUERY_TXS,
             Constants::REFUND,
             Constants::SIMPLE_QUERY_TX,
@@ -34,13 +40,13 @@ class Utils{
             Constants::QUERY_CARD_DETAILS];
     }
 
-    function addExtraInf($params)
+    public static function addExtraInf($params)
     {
         $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => "PHP version: ".phpversion());
         return $params;
     }
 
-    function addSecureHash($params, $key)
+    public static function addSecureHash($params, $key)
     {
         ksort($params);
         $concatenated_data = concatValues($params);
@@ -50,7 +56,7 @@ class Utils{
         return $params;
     }
 
-    function concatValues($params)
+    public static function concatValues($params)
     {
         $concated_data = "";
         foreach ($params as $k => $v){
@@ -60,7 +66,7 @@ class Utils{
         return $concated_data;
     }
 
-    function validate_size($value, $k="", $nodo="", $sanitizeStruc){
+    public static function validate_size($value, $k="", $nodo="", $sanitizeStruc){
         if ($nodo != False){
             $key_name = $nodo . "." . $k . ".max_length";
         }else{
@@ -73,7 +79,7 @@ class Utils{
         return $value;
     }
 
-    function sanitize($params, $is_root=True, $nodo = False, $sanitizeStruc = null){
+    public static function sanitize($params, $is_root=True, $nodo = False, $sanitizeStruc = null){
         if ($is_root){
             $sanitizeStruc = parse_ini_file(dirname(__FILE__) . '/conf/' . 'sanitize_struc.ini');
         }
@@ -103,7 +109,7 @@ class Utils{
         return $result_params;
     }
 
-    function is_assoc($array)
+    public static function is_assoc($array)
     {
 
         // Keys of the array
@@ -114,7 +120,7 @@ class Utils{
         return array_keys($keys) !== $keys;
     }
 
-    function check_sanitize_array($params, $nodo, $sanitizeStruc){
+    public static function check_sanitize_array($params, $nodo, $sanitizeStruc){
         $result_params = array();
         foreach ($params as $x){
             array_push($result_params, self::sanitize($x, False, $nodo, $sanitizeStruc));
@@ -122,7 +128,7 @@ class Utils{
         return $result_params;
     }
 
-    function mask_data($data){
+    public static function mask_data($data){
         $data = self::_mask_c_number($data);
         $data = self::_mask_exp_date($data);
         $data = self::_mask_cvc($data);
@@ -130,7 +136,7 @@ class Utils{
     }
 
 
-    function _mask_cvc($data){
+    public static function _mask_cvc($data){
         $cvc_key = "</psp_CardSecurityCode>";
         $cvcs = self::_find_cvc($data);
         foreach ($cvcs as $cvc){
@@ -140,13 +146,13 @@ class Utils{
         return $data;
     }
 
-    function _find_cvc($data){
+    public static function _find_cvc($data){
         $var = '';
         $cvcs = preg_match_all('/\d{3,4}<\/psp_CardSecurityCode>/', $data, $var);
         return $var[0];
     }
 
-    function _mask_exp_date($data){
+    public static function _mask_exp_date($data){
         $exp_date_key = "</psp_CardExpDate>";
         $exp_dates = self::_find_exp_date($data);
         foreach ($exp_dates as $exp_date){
@@ -156,13 +162,13 @@ class Utils{
     }
 
 
-    function _find_exp_date($data){
+    public static function _find_exp_date($data){
         $var = '';
         $exp_dates = preg_match_all('/\d{4}<\/psp_CardExpDate>/', $data, $var);
         return $var[0];
     }
 
-    function _mask_c_number($data){
+    public static function _mask_c_number($data){
         $c_number_key = "</psp_CardNumber>";
 
         $c_numbers = self::_find_c_numbers($data);
@@ -175,11 +181,10 @@ class Utils{
         return $data;
     }
 
-    function _find_c_numbers($data){
+    public static function _find_c_numbers($data){
         $var = '';
         $c_numbers = preg_match_all('/\d{13,19}<\/psp_CardNumber>/', $data, $var);
         return $var[0];
     }
-    
+
 }
-    
