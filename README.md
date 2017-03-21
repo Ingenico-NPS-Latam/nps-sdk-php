@@ -26,7 +26,7 @@ It's a basic configuration of the SDK
 require_once './vendor/autoload.php';
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-Configuration::environment(Constants::STAGING_ENVIRONMENT);
+Configuration::environment(Constants::STAGING_ENV);
 Configuration::secretKey(“yourSecretKeyHere”);
 ```
 
@@ -38,7 +38,7 @@ require_once './vendor/autoload.php';
 use NpsSDK\Sdk;
 use NpsSDK\ApiException;
 
-Configuration::environment(Constants::SANDBOX_ENVIRONMENT);
+Configuration::environment(Constants::SANDBOX_ENV);
 Configuration::secretKey("YourKeyhere");
 
 $sdk = new Sdk();
@@ -76,9 +76,9 @@ require_once './vendor/autoload.php';
 
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-Configuration::environment(Constants::STAGING_ENVIRONMENT);
-Configuration::environment(Constants::SANDBOX_ENVIRONMENT);
-Configuration::environment(Constants::PRODUCTION_ENVIRONMENT);
+Configuration::environment(Constants::STAGING_ENV);
+Configuration::environment(Constants::SANDBOX_ENV);
+Configuration::environment(Constants::PRODUCTION_ENV);
 ```
 
 ## Error handling
