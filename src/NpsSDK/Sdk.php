@@ -18,7 +18,7 @@ class Sdk extends SoapClientSdk
         #$this->client = new SoapClientSdk();
         $wrapped_args = array();
         $arguments = $this->addExtraInf($arguments);
-        if (Configuration::logLevel() == Constants::DEBUG && Configuration::environment() == Constants::PRODUCTION_ENVIRONMENT){
+        if (Configuration::logLevel() == Constants::DEBUG && Configuration::environment() == Constants::PRODUCTION_ENV){
             throw new LogException("DEBUG level is now allowed in PRODUCTION ENVIRONMENT");
         }
         

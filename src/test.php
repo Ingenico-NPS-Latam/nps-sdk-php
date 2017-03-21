@@ -14,7 +14,7 @@ use NpsSDK\ApiException;
 // payonline_2p
 $API_KEY = "IeShlZMDk8mp8VA6vy41mLnVggnj1yqHcJyNqIYaRINZnXdiTfhF0Ule9WNAUCR6";
 
-Configuration::environment(Constants::DEVELOPMENT_ENVIRONMENT);
+Configuration::environment(Constants::DEVELOPMENT_ENV);
 Configuration::secretKey($API_KEY);
 
 
