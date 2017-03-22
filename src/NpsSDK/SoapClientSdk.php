@@ -10,11 +10,6 @@ use NpsSDK\ApiException;
  */
 class SoapClientSdk extends SoapClient {
 
-  private $_execution_timeout;
-  private $_connection_timeout;
-  
-  private $_certFile;
-  private $_threads;
   private $_logger;
   
   const ERROR_CONNECT = 1000;
@@ -40,7 +35,7 @@ class SoapClientSdk extends SoapClient {
                   $this->_logger->info(Utils::mask_data($data));
               }
               else{
-                  $this->logger->debug($data);
+                  $this->_logger->debug($data);
               }
           }
     }
@@ -89,36 +84,8 @@ class SoapClientSdk extends SoapClient {
         }
       }   
 
-      curl_close($ch); 
-
-      // Return? noyes
-      if (!$one_way) { return ($response); } 
-    }
-  
-    function addExtraInf($params)
-    {
-        $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => "colocar aquio el lnar la version");
-        return $params;
+      curl_close($ch);
+      return $response;
     }
 
-    function addSecureHash($params, $key)
-    {
-        ksort($params);
-        $concatenated_data = $this->__concat_values($params);
-        $concat_data_w_key = $concatenated_data . $key;
-        $s_hash = md5($concat_data_w_key);
-        $params["psp_SecureHash"] = $s_hash;
-        return $params;
-    }
-
-    function __concat_values($params)
-    {
-        $concated_data = "";
-        foreach ($params as $k => $v){
-            if (gettype($v) == 'array') { continue; }
-            $concated_data = $concated_data . $v;
-        }
-        return $concated_data;
-    }
-  
 }

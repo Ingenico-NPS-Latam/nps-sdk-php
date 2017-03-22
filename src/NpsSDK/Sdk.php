@@ -15,15 +15,18 @@ class Sdk extends SoapClientSdk
 {
     private function callClient($name, $arguments)
     {
-        #$this->client = new SoapClientSdk();
+
         $wrapped_args = array();
-        $arguments = $this->addExtraInf($arguments);
+        if (!in_array($name, Utils::getMerchDetNotAddServices())){
+          $arguments = Utils::addExtraInf($arguments);
+        }
+
         if (Configuration::logLevel() == Constants::DEBUG && Configuration::environment() == Constants::PRODUCTION_ENV){
             throw new LogException("DEBUG level is now allowed in PRODUCTION ENVIRONMENT");
         }
         
         if (!array_key_exists('psp_ClientSession', $arguments)) {
-            $arguments = $this->addSecureHash($arguments, Configuration::secretKey());
+            $arguments = Utils::addSecureHash($arguments, Configuration::secretKey());
         }
         
         if (Configuration::sanitize()){

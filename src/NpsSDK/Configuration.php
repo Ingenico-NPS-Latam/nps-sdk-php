@@ -14,12 +14,10 @@ class Configuration
     private $_secretKey = null;
     public $_connectionTimeout = 10000;
     public $_executionTimeout = 60000;
-    private $_cert = null;
     private $_debug = True;
     private $_verifPeer = TRUE;
     private $_logLevel = Constants::INFO;
     private $_sanitize = True;
-    private $_logFile = "tbd";
     private $_logger = null;
     private $_pem = null;
     private $_pemkey = null;
@@ -49,7 +47,6 @@ class Configuration
              $url = dirname(__DIR__) . Constants::WSDL_FOLDER . Constants::DEVELOPMENT_WSDL_FILE;
              break;
         }
-        print_r($url);
         return $url;
     }
     
