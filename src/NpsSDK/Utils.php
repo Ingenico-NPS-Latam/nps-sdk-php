@@ -13,7 +13,7 @@ class Utils
 	{
 		return call_user_func_array( __CLASS__.'::'.$name, $arguments );
 	}
-
+	
     public static function getMerchDetNotAddServices(){
         return [Constants::QUERY_TXS,
             Constants::REFUND,
@@ -42,28 +42,28 @@ class Utils
 
     public static function addExtraInf($params)
     {
-        $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => "PHP version: ".phpversion());
+        $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => Constants::SDK_NAME . Constants::SDK_VERSION);
         return $params;
     }
 
     public static function addSecureHash($params, $key)
     {
-        ksort($params);
-        $concatenated_data = concatValues($params);
-        $concat_data_w_key = $concatenated_data . $key;
-        $s_hash = md5($concat_data_w_key);
-        $params["psp_SecureHash"] = $s_hash;
-        return $params;
+      ksort($params);
+      $concatenated_data = self::concatValues($params);
+      $concat_data_w_key = $concatenated_data . $key;
+      $s_hash = md5($concat_data_w_key);
+      $params["psp_SecureHash"] = $s_hash;
+      return $params;
     }
 
     public static function concatValues($params)
     {
-        $concated_data = "";
-        foreach ($params as $k => $v){
-            if (gettype($v) == 'array') { continue; }
-            $concated_data = $concated_data . $v;
-        }
-        return $concated_data;
+      $concated_data = "";
+      foreach ($params as $k => $v){
+        if (gettype($v) == 'array') { continue; }
+        $concated_data = $concated_data . $v;
+      }
+      return $concated_data;
     }
 
     public static function validate_size($value, $k="", $nodo="", $sanitizeStruc){
@@ -109,14 +109,8 @@ class Utils
         return $result_params;
     }
 
-    public static function is_assoc($array)
-    {
-
-        // Keys of the array
+    public static function is_assoc($array){
         $keys = array_keys($array);
-
-        // If the array keys of the keys match the keys, then the array must
-        // not be associative (e.g. the keys array looked like {0:0, 1:1...}).
         return array_keys($keys) !== $keys;
     }
 

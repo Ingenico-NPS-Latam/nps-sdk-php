@@ -12,7 +12,6 @@ use NpsSDK\Configuration;
  * @author NPS
  */
 class SoapClientSdk extends SoapClient {
-
 	private $_execution_timeout;
 	private $_connection_timeout;
 	private $_certFile;

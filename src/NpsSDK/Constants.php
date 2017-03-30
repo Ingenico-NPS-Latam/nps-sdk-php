@@ -7,7 +7,8 @@
 namespace NpsSDK;
 class Constants
 {
-    const SDK_VERSION = "1.0";
+    const SDK_VERSION = "1.1.4";
+    const SDK_NAME = "PHP SDK ";
     const PAY_ONLINE_2P = "PayOnLine_2p";
     const AUTHORIZE_2P = "Authorize_2p";
     const QUERY_TXS = "QueryTxs";
@@ -34,10 +35,10 @@ class Constants
     const PRODUCTION_WSDL_FILE = "production.wsdl";
     const SANDBOX_WSDL_FILE = "sandbox.wsdl";
     const DEVELOPMENT_WSDL_FILE = "development.wsdl";
-    const STAGING_ENVIRONMENT = "staging";
-    const PRODUCTION_ENVIRONMENT = "production";
-    const SANDBOX_ENVIRONMENT = "sandbox";
-    const DEVELOPMENT_ENVIRONMENT = "development";
+    const STAGING_ENV = "staging";
+    const PRODUCTION_ENV = "production";
+    const SANDBOX_ENV = "sandbox";
+    const DEVELOPMENT_ENV = "development";
     const CREATE_PAYMENT_METHOD = "CreatePaymentMethod";
     const CREATE_PAYMENT_METHOD_FROM_PAYMENT = "CreatePaymentMethodFromPayment";
     const RETRIEVE_PAYMENT_METHOD = "RetrievePaymentMethod";

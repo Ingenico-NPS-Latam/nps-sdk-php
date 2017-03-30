@@ -12,7 +12,7 @@ the SDK can be installed with composer
 {
     "require": 
         {
-            "nps/php-sdk": "1.1.2"
+            "nps/php-sdk": "1.1.4"
         }
 }
 $ composer require nps/nps-sdk
@@ -22,23 +22,23 @@ $ composer require nps/nps-sdk
 
 It's a basic configuration of the SDK
 
-```php
+```php?start_inline=1
 require_once './vendor/autoload.php';
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-Configuration::environment(Constants::STAGING_ENVIRONMENT);
+Configuration::environment(Constants::STAGING_ENV);
 Configuration::secretKey(“yourSecretKeyHere”);
 ```
 
 Here is an simple example request:
 
-```php
+```php?start_inline=1
 require_once './vendor/autoload.php';
 
 use NpsSDK\Sdk;
 use NpsSDK\ApiException;
 
-Configuration::environment(Constants::SANDBOX_ENVIRONMENT);
+Configuration::environment(Constants::SANDBOX_ENV);
 Configuration::secretKey("YourKeyhere");
 
 $sdk = new Sdk();
@@ -71,14 +71,14 @@ try{
 
 ## Environments
 
-```php
+```php?start_inline=1
 require_once './vendor/autoload.php';
 
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-Configuration::environment(Constants::STAGING_ENVIRONMENT);
-Configuration::environment(Constants::SANDBOX_ENVIRONMENT);
-Configuration::environment(Constants::PRODUCTION_ENVIRONMENT);
+Configuration::environment(Constants::STAGING_ENV);
+Configuration::environment(Constants::SANDBOX_ENV);
+Configuration::environment(Constants::PRODUCTION_ENV);
 ```
 
 ## Error handling
@@ -87,7 +87,7 @@ ApiException: This exception is raised when a ReadTimeout or a ConnectTimeout oc
 
 Note: The rest of the exceptions that can occur will be detailed inside of the response provided by NPS or will be provided by the php SoapClient class.
 
-```php
+```php?start_inline=1
 require_once './vendor/autoload.php';
 
 use NpsSDK\ApiException;
@@ -107,7 +107,7 @@ The SDK uses the custom logger that you use for your project.
 
 An example for monolog Logger.
 
-```php
+```php?start_inline=1
 use Monolog\Logger;
 $logger = new Logger(“NpsSdk”);
 
@@ -123,7 +123,7 @@ Note: The logger needs to be PSR-3 compliant to work properly inside of the SDK,
 The "INFO" level will write concise information of the request and will mask sensitive data of the request. 
 The "DEBUG" level will write information about the request to let developers debug it in a more detailed way.
 
-```php
+```php?start_inline=1
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -132,7 +132,7 @@ Configuration::loglevel(“DEBUG”);
 
 Sanitize allows the SDK to truncate to a fixed size some fields that could make request fail, like extremely long name.
 
-```php
+```php?start_inline=1
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -145,7 +145,7 @@ ExecutionTimeout(Default=60 seconds): you can change the execution timeout of th
 
 ConnectionTimeout(Default=60 seconds): you can change the connection timeout of the request.
 
-```php
+```php?start_inline=1
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -155,7 +155,7 @@ Configuration::executionTimeout(65);
 
 Proxy configuration
 
-```php
+```php?start_inline=1
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
