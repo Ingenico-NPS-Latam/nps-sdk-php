@@ -7,7 +7,13 @@
  */
 namespace NpsSDK;
 
-class Utils{
+class Utils
+{
+	public function __call( $name, $arguments )
+	{
+		return call_user_func_array( __CLASS__.'::'.$name, $arguments );
+	}
+	
     public static function getMerchDetNotAddServices(){
         return [Constants::QUERY_TXS,
             Constants::REFUND,
@@ -174,6 +180,5 @@ class Utils{
         $c_numbers = preg_match_all('/\d{13,19}<\/psp_CardNumber>/', $data, $var);
         return $var[0];
     }
-    
+
 }
-    
