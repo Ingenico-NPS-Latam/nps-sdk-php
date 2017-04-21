@@ -1,4 +1,5 @@
 #  PHP SDK
+<%= image_tag '../images/devicon/php-original.svg', { :width => '60', :class => 'PHP Client-side SDK', :alt => '' } %>
 
 ## Availability
 Supports PHP 5.3 and above
@@ -12,7 +13,7 @@ the SDK can be installed with composer
 {
     "require": 
         {
-            "nps/php-sdk": "1.1.4"
+            "nps/php-sdk": "1.1.5"
         }
 }
 $ composer require nps/nps-sdk

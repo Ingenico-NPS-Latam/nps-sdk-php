@@ -2631,7 +2631,7 @@
 </binding>
 <service name="PaymentServicePlatform">
   <port name="PaymentServicePlatformPort" binding="tns:PaymentServicePlatformBinding">
-    <soap:address location="https://dev.nps.com.ar:443/ws.php"/>
+    <soap:address location="https://psp.nps.com.ar:443/ws.php"/>
   </port>
 </service>
 </definitions>

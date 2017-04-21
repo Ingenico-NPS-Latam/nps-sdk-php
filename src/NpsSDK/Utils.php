@@ -120,9 +120,27 @@ class Utils{
         $data = self::_mask_c_number($data);
         $data = self::_mask_exp_date($data);
         $data = self::_mask_cvc($data);
+        $data = self::_mask_token_c_number($data);
+        $data = self::_mask_token_exp_date($data);
+        $data = self::_mask_token_cvc($data);
         return $data;
     }
 
+    public static function _mask_token_cvc($data){
+      $cvc_key = "</SecurityCode>";
+      $cvcs = self::_find_token_cvc($data);
+      foreach ($cvcs as $cvc){
+        $repeat = strlen($cvc) - strlen($cvc_key);
+        $data = str_replace($cvcs, str_repeat("*", $repeat). $cvc_key, $data);
+      }
+      return $data;
+    }
+
+  public static function _find_token_cvc($data){
+    $var = '';
+    $cvcs = preg_match_all('/\d{3,4}<\/SecurityCode>/', $data, $var);
+    return $var[0];
+  }
 
     public static function _mask_cvc($data){
         $cvc_key = "</psp_CardSecurityCode>";
@@ -139,6 +157,23 @@ class Utils{
         $cvcs = preg_match_all('/\d{3,4}<\/psp_CardSecurityCode>/', $data, $var);
         return $var[0];
     }
+
+
+  public static function _mask_token_exp_date($data){
+    $exp_date_key = "</ExpirationDate>";
+    $exp_dates = self::_find_token_exp_date($data);
+    foreach ($exp_dates as $exp_date){
+      $data = str_replace($exp_date, "****" . $exp_date_key, $data);
+    }
+    return $data;
+  }
+
+
+  public static function _find_token_exp_date($data){
+    $var = '';
+    $exp_dates = preg_match_all('/\d{4}<\/ExpirationDate>/', $data, $var);
+    return $var[0];
+  }
 
     public static function _mask_exp_date($data){
         $exp_date_key = "</psp_CardExpDate>";
@@ -174,6 +209,25 @@ class Utils{
         $c_numbers = preg_match_all('/\d{13,19}<\/psp_CardNumber>/', $data, $var);
         return $var[0];
     }
+
+  public static function _mask_token_c_number($data){
+    $c_number_key = "</Number>";
+
+    $c_numbers = self::_find_token_c_numbers($data);
+    foreach ($c_numbers as $c_number){
+      $c_number_len = strlen(substr($c_number,0, strlen($c_number) - strlen($c_number_key)));
+      $masked_chars = $c_number_len - 10;
+      $replacer = substr($c_number, 0, 6) . str_repeat("*", $masked_chars) . substr($c_number, strlen($c_number) - 4 - strlen($c_number_key), strlen($c_number));
+      $data = str_replace($c_number, $replacer, $data);
+    }
+    return $data;
+  }
+
+  public static function _find_token_c_numbers($data){
+    $var = '';
+    $c_numbers = preg_match_all('/\d{13,19}<\/Number>/', $data, $var);
+    return $var[0];
+  }
     
 }
     

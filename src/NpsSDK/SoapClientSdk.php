@@ -22,7 +22,8 @@ class SoapClientSdk extends SoapClient {
                   "trace"=>(Configuration::debug() ? 1 : 0),
                   "exceptions"=>1,
                   "connection_timeout" => Configuration::connectionTimeout(),
-                  "execution_timeout" => Configuration::executionTimeout()
+                  "execution_timeout" => Configuration::executionTimeout(),
+                  "cache_wsdl" => WSDL_CACHE_NONE
                   );
 
     parent::__construct(Configuration::url(), $options);
