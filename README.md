@@ -1,5 +1,4 @@
 #  PHP SDK
-<%= image_tag '../images/devicon/php-original.svg', { :width => '60', :class => 'PHP Client-side SDK', :alt => '' } %>
 
 ## Availability
 Supports PHP 5.3 and above
