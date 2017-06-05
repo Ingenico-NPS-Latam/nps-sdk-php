@@ -2,12 +2,13 @@
     "name": "nps/php-sdk",
     "description": "A Php SDK for Ingenico ePayments - NPS LatAm Services",
     "type": "library",
-    "keywords": ["nps","ingenico"],
+    "keywords": ["nps","ingenico", "payment processing", "api"],
+    "homepage": "https://developers.nps.com.ar/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Gustavo Diaz",
-            "email": "gustavo.diaz@epay.ingenico.com"
+          "name": "Nps and contributors",
+          "homepage": "https://github.com/Ingenico-NPS-Latam/nps-sdk-php/graphs/contributors"
         }
     ],
     "require": 
@@ -18,7 +19,7 @@
 	{
             "psr-0": 
             {
-		"NpsSDK": "src/"
+		      "NpsSDK": "src/"
             }
 	}
 }

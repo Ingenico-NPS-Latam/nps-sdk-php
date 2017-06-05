@@ -15,7 +15,7 @@ class Configuration
     public $_connectionTimeout = 10000;
     public $_executionTimeout = 60000;
     private $_debug = True;
-    private $_verifPeer = TRUE;
+    private $_verifPeer =false;
     private $_logLevel = Constants::INFO;
     private $_sanitize = True;
     private $_logger = null;

@@ -13,10 +13,10 @@ the SDK can be installed with composer
 {
     "require": 
         {
-            "nps/php-sdk": "1.1.9"
+            "nps/php-sdk": "1.2.0"
         }
 }
-$ composer require nps/nps-sdk
+$ composer require nps/php-sdk
 ```
 
 ## Configuration
