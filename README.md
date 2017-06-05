@@ -7,7 +7,7 @@ Supports PHP 5.3 and above
 
 ## How to install
 
-the SDK can be installed with <a href="http://getcomposer.org/" target="_blank">Composer</a>
+the SDK can be installed with composer
 
 ```
 {
