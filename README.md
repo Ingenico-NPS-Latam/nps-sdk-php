@@ -7,7 +7,7 @@ Supports PHP 5.3 and above
 
 ## How to install
 
-## # Composer installation
+### Composer installation
 
 the SDK can be installed with [Composer](http://getcomposer.org/) by updating your composer.json file
 
@@ -27,7 +27,7 @@ or by executing this command
 $ composer require nps/php-sdk
 ```
 
-## # Manual installation
+### Manual installation
 
 You can download or clone the SDK from our [Github Page](https://github.com/Ingenico-NPS-Latam/nps-sdk-php). and then include the `init.php` file.
 
