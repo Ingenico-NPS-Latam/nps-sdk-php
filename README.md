@@ -15,7 +15,7 @@ the SDK can be installed with [Composer](http://getcomposer.org/) by updating yo
 {
     "require": 
         {
-            "nps/php-sdk": "1.2.3"
+            "nps/php-sdk": "1.2.4"
         }
 }
 
@@ -40,7 +40,7 @@ require_once(__DIR__ . '/nps-sdk-php/init.php');
 
 It's a basic configuration of the SDK
 
-```php?start_inline=1
+```php 
 require_once './vendor/autoload.php';
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
@@ -50,7 +50,7 @@ Configuration::secretKey(“yourSecretKeyHere”);
 
 Here is an simple example request:
 
-```php?start_inline=1
+```php 
 require_once './vendor/autoload.php';
 
 use NpsSDK\Sdk;
@@ -89,7 +89,7 @@ try{
 
 ## Environments
 
-```php?start_inline=1
+```php 
 require_once './vendor/autoload.php';
 
 use NpsSDK\Configuration;
@@ -105,7 +105,7 @@ ApiException: This exception is raised when a ReadTimeout or a ConnectTimeout oc
 
 Note: The rest of the exceptions that can occur will be detailed inside of the response provided by NPS or will be provided by the php SoapClient class.
 
-```php?start_inline=1
+```php 
 require_once './vendor/autoload.php';
 
 use NpsSDK\ApiException;
@@ -125,7 +125,7 @@ The SDK uses the custom logger that you use for your project.
 
 An example for monolog Logger.
 
-```php?start_inline=1
+```php 
 use Monolog\Logger;
 $logger = new Logger(“NpsSdk”);
 
@@ -141,7 +141,7 @@ Note: The logger needs to be PSR-3 compliant to work properly inside of the SDK,
 The "INFO" level will write concise information of the request and will mask sensitive data of the request. 
 The "DEBUG" level will write information about the request to let developers debug it in a more detailed way.
 
-```php?start_inline=1
+```php 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -150,7 +150,7 @@ Configuration::loglevel(“DEBUG”);
 
 Sanitize allows the SDK to truncate to a fixed size some fields that could make request fail, like extremely long name.
 
-```php?start_inline=1
+```php 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -163,7 +163,7 @@ ExecutionTimeout(Default=60 seconds): you can change the execution timeout of th
 
 ConnectionTimeout(Default=60 seconds): you can change the connection timeout of the request.
 
-```php?start_inline=1
+```php 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
@@ -173,7 +173,7 @@ Configuration::executionTimeout(65);
 
 Proxy configuration
 
-```php?start_inline=1
+```php 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
