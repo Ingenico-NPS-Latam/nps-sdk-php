@@ -6,6 +6,7 @@
  * Time: 8:36 AM
  */
 namespace NpsSDK;
+require_once 'Constants.php';
 use NpsSDK\Constants;
 class Configuration
 {

@@ -9,8 +9,11 @@
 
 namespace NpsSDK;
 require_once 'Errors.php';
+require_once 'SoapClientSdk.php';
 use NpsSDK\Constants;
 use NpsSDK\SoapClientSdk;
+
+
 
 class Sdk extends SoapClientSdk
 {
