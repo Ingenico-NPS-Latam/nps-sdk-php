@@ -7,11 +7,10 @@
  */
 
 
-require(dirname(__FILE__) . '/src/NpsSDK/Sdk.php');
-require(dirname(__FILE__) . '/src/NpsSDK/Configuration.php');
-require(dirname(__FILE__) . '/src/NpsSDK/Errors.php');
-require(dirname(__FILE__) . '/src/NpsSDK/SoapClientSdk.php');
-require(dirname(__FILE__) . '/src/NpsSDK/Utils.php');
-require(dirname(__FILE__) . '/src/NpsSDK/adapters.php');
-require(dirname(__FILE__) . '/src/NpsSDK/Constants.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Sdk.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Configuration.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Errors.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/SoapClientSdk.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Utils.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Constants.php');
 

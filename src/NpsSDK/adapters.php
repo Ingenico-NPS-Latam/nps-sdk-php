@@ -1,9 +1,10 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Created by Nps.
+ * User: inge
+ * Date: 11/1/16
+ * Time: 8:36 AM
  */
 namespace NpsSDK;
 

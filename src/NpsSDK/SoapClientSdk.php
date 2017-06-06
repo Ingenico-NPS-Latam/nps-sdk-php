@@ -4,9 +4,10 @@ use SoapClient;
 use NpsSDK\ApiException;
 
 /**
- * Description of PspSoapClient
- *
- * @author NPS
+ * Created by Nps.
+ * User: inge
+ * Date: 11/1/16
+ * Time: 8:36 AM
  */
 class SoapClientSdk extends SoapClient {
 
