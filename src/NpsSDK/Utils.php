@@ -75,7 +75,8 @@ class Utils{
 
     public static function sanitize($params, $is_root=True, $nodo = False, $sanitizeStruc = null){
         if ($is_root){
-            $sanitizeStruc = parse_ini_file(dirname(__FILE__) . '/conf/' . 'sanitize_struc.ini');
+            //$sanitizeStruc = parse_ini_file(dirname(__FILE__) . '/conf/' . 'sanitize_struc.ini');
+          $sanitizeStruc = Constants::SANITIZE;
         }
         if ($is_root == True){
             $result_params = array();
