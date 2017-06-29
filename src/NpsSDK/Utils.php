@@ -36,7 +36,14 @@ class Utils{
 
     public static function addExtraInf($params)
     {
-        $params["psp_MerchantAdditionalDetails"] = array("SdkInfo" => Constants::SDK_NAME . Constants::SDK_VERSION);
+        $info = array("SdkInfo" => Constants::SDK_NAME . Constants::SDK_VERSION);
+        if (isset($params["psp_MerchantAdditionalDetails"])){
+          $params["psp_MerchantAdditionalDetails"] = array_merge($params["psp_MerchantAdditionalDetails"], $info);
+          //$preAddDetails = $params["psp_MerchantAdditionalDetails"];
+        }else{
+          $params["psp_MerchantAdditionalDetails"] = $info;
+        }
+
         return $params;
     }
 
