@@ -23,6 +23,7 @@ class Configuration
     private $_pem = null;
     private $_pemkey = null;
     private $_proxy_url = null;
+    private $_proxy_port = null;
     private $_proxy_username = null;
     private $_proxy_password = null;
     
@@ -276,6 +277,25 @@ class Configuration
     public function getProxyUrl(){
         return $this->_proxy_url;
     }
+
+  public static function proxyPort($value=null){
+    if (is_null($value)) {
+      return self::$global->getProxyPort();
+    }
+    self::$global->setProxyPort($value);
+  }
+
+  /**
+   * Do not use this method directly. Pass in the environment to the constructor.
+   */
+  public function setProxyPort($value)
+  {
+    $this->_proxy_port = $value;
+  }
+
+  public function getProxyPort(){
+    return $this->_proxy_port;
+  }
     
     public static function proxyUser($value=null){
         if (is_null($value)) {

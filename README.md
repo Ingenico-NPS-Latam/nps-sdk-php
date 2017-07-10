@@ -178,6 +178,7 @@ use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
 Configuration::proxyUrl("http://yourproxy");
+Configuration::proxyPort(6854);
 Configuration::proxyUser("proxyUsername");
 Configuration::proxyPass("proxyPassword");
 ```

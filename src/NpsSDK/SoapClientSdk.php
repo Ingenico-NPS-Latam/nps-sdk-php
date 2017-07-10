@@ -67,6 +67,8 @@ class SoapClientSdk extends SoapClient {
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, (Configuration::verifyPeer() ? '1':'0'));
       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
       curl_setopt($ch, CURLOPT_PROXY, Configuration::proxyUrl());
+      curl_setopt($ch, CURLOPT_PROXYPORT, Configuration::proxyPort());
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
       if (Configuration::proxyUser() != null){
           $proxyauth = Configuration::proxyUser() .':'. Configuration::proxyPass();
           curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
