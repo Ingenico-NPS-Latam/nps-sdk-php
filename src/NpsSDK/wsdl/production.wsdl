@@ -204,8 +204,8 @@
  <xsd:complexType name="AirlineDetailsStruct">
   <xsd:all>
    <xsd:element name="PNR" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
-   <xsd:element name="Legs" type="tns:ArrayOf_LegStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="Passengers" type="tns:ArrayOf_PassengerStruct" nillable="false" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="Legs" type="tns:ArrayOf_LegStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="Passengers" type="tns:ArrayOf_PassengerStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="Ticket" type="tns:AirlineTicketStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
@@ -1541,7 +1541,7 @@
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SetAsCustomerDefault" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="PaymentMethodOutputDetailsStruct">
@@ -1577,7 +1577,7 @@
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_SetAsCustomerDefault" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_CreatePaymentMethodFromPayment">
@@ -1597,7 +1597,7 @@
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_RetrievePaymentMethod">
@@ -1627,7 +1627,7 @@
    <xsd:element name="psp_Person" type="tns:PersonStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_UpdatePaymentMethod">
@@ -1647,7 +1647,7 @@
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PaymentMethodId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_DeletePaymentMethod">
@@ -1673,7 +1673,7 @@
    <xsd:element name="psp_Address" type="tns:AddressStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="PaymentMethodsOutputDetailsStruct">
@@ -1720,7 +1720,7 @@
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_RetrieveCustomer">
@@ -1755,7 +1755,7 @@
    <xsd:element name="psp_DefaultPaymentMethodId" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PaymentMethod" type="tns:PaymentMethodInputDetailsStruct" nillable="false" minOccurs="0" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_UpdateCustomer">
@@ -1782,7 +1782,7 @@
    <xsd:element name="psp_MerchantId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_CustomerId" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
    <xsd:element name="psp_PosDateTime" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
-   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="psp_SecureHash" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:complexType name="RespuestaStruct_DeleteCustomer">
