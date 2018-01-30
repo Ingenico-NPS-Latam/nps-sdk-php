@@ -13,4 +13,5 @@ require_once(dirname(__FILE__) . '/src/NpsSDK/Errors.php');
 require_once(dirname(__FILE__) . '/src/NpsSDK/SoapClientSdk.php');
 require_once(dirname(__FILE__) . '/src/NpsSDK/Utils.php');
 require_once(dirname(__FILE__) . '/src/NpsSDK/Constants.php');
+require_once(dirname(__FILE__) . '/src/NpsSDK/Version.php');
 

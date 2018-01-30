@@ -18,20 +18,27 @@ class SoapClientSdk extends SoapClient {
 
   
     function __construct() {
-    $this->_logger = Configuration::logger();
+    $this->_logger = Configuration::logger(); 
     $options = array(
                   "trace"=>(Configuration::debug() ? 1 : 0),
                   "exceptions"=>1,
                   "connection_timeout" => Configuration::connectionTimeout(),
                   "execution_timeout" => Configuration::executionTimeout(),
-                  "cache_wsdl" => WSDL_CACHE_NONE
+                  "cache_wsdl" => Configuration::useCache() ? WSDL_CACHE_DISK : WSDL_CACHE_NONE
                   );
 
+    self::initSoapCacheDir();
     parent::__construct(Configuration::url(), $options);
     }
 
+  protected function initSoapCacheDir() {
+    if (Configuration::useCache()){
+      ini_set('soap.wsdl_cache_dir', Configuration::cacheLocation());
+      ini_set('soap.wsdl_cache_ttl', Configuration::cacheDuration());
+    }
+  }
 
-    private function log($data){
+  private function log($data){
         if (Configuration::debug() && $this->_logger){
               if (Configuration::logLevel() == Constants::INFO){
                   $this->_logger->info(Utils::mask_data($data));

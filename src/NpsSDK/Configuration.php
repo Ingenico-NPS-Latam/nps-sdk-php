@@ -15,6 +15,9 @@ class Configuration
     private $_secretKey = null;
     public $_connectionTimeout = 10000;
     public $_executionTimeout = 60000;
+    private $_useCache = False;
+    private $_cacheDuration = 1;
+    private $_cacheLocation = '/tmp';
     private $_debug = True;
     private $_verifPeer =false;
     private $_logLevel = Constants::INFO;
@@ -69,8 +72,54 @@ class Configuration
     public function getExecutionTimeout(){
         return $this->_executionTimeout;
     }
-    
-    public static function connectionTimeout($value=null){
+
+    public static function useCache($value=null){
+      if (is_null($value)) {
+        return self::$global->getUseCache();
+      }
+      self::$global->setUseCache($value);
+    }
+
+    public function setUseCache($value){
+      $this->_useCache = $value;
+    }
+
+    public function getUseCache(){
+      return $this->_useCache;
+    }
+
+
+  public static function cacheLocation($value=null){
+    if (is_null($value)) {
+      return self::$global->getCacheLocation();
+    }
+    self::$global->setCacheLocation($value);
+  }
+
+  public function setCacheLocation($value){
+    $this->_cacheLocation = $value;
+  }
+
+  public function getCacheLocation(){
+    return $this->_cacheLocation;
+  }
+
+  public static function cacheDuration($value=null){
+    if (is_null($value)) {
+      return self::$global->getCacheDuration();
+    }
+    self::$global->setCacheDuration($value);
+  }
+
+  public function setCacheDuration($value){
+    $this->_cacheDuration = $value;
+  }
+
+  public function getCacheDuration(){
+    return $this->_cacheDuration;
+  }
+
+  public static function connectionTimeout($value=null){
         if (is_null($value)) {
             return self::$global->getConnectionTimeout();
         }

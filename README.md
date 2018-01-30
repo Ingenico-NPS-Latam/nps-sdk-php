@@ -15,7 +15,7 @@ the SDK can be installed with [Composer](http://getcomposer.org/) by updating yo
 {
     "require": 
         {
-            "nps/php-sdk": "1.2.13"
+            "nps/php-sdk": "1.2.14"
         }
 }
 
