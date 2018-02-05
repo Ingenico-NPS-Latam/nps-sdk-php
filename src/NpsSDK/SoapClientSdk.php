@@ -34,7 +34,7 @@ class SoapClientSdk extends SoapClient {
   protected function initSoapCacheDir() {
     if (Configuration::useCache()){
       ini_set('soap.wsdl_cache_dir', Configuration::cacheLocation());
-      ini_set('soap.wsdl_cache_ttl', Configuration::cacheDuration());
+      ini_set('soap.wsdl_cache_ttl', Configuration::cacheTTL());
     }
   }
 

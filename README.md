@@ -15,7 +15,7 @@ the SDK can be installed with [Composer](http://getcomposer.org/) by updating yo
 {
     "require": 
         {
-            "nps/php-sdk": "1.2.14"
+            "nps/php-sdk": "1.2.15"
         }
 }
 
@@ -181,4 +181,15 @@ Configuration::proxyUrl("http://yourproxy");
 Configuration::proxyPort(6854);
 Configuration::proxyUser("proxyUsername");
 Configuration::proxyPass("proxyPassword");
+```
+
+Cache
+
+```php 
+use NpsSDK\Configuration;
+
+Configuration::secretKey(“your key here”);
+Configuration::useCache(True);
+Configuration::cacheTTL(86400);
+Configuration::cacheLocation('/tmp);
 ```

@@ -16,7 +16,7 @@ class Configuration
     public $_connectionTimeout = 10000;
     public $_executionTimeout = 60000;
     private $_useCache = False;
-    private $_cacheDuration = 1;
+    private $_cacheDuration = 86400;
     private $_cacheLocation = '/tmp';
     private $_debug = True;
     private $_verifPeer =false;
@@ -104,7 +104,7 @@ class Configuration
     return $this->_cacheLocation;
   }
 
-  public static function cacheDuration($value=null){
+  public static function cacheTTL($value=null){
     if (is_null($value)) {
       return self::$global->getCacheDuration();
     }
