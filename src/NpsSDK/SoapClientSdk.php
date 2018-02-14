@@ -40,12 +40,8 @@ class SoapClientSdk extends SoapClient {
 
   private function log($data){
         if (Configuration::debug() && $this->_logger){
-              if (Configuration::logLevel() == Constants::INFO){
-                  $this->_logger->info(Utils::mask_data($data));
-              }
-              else{
-                  $this->_logger->debug($data);
-              }
+            $this->_logger->info(Utils::mask_data($data));
+            $this->_logger->debug($data);
           }
     }
   

@@ -1,3 +1,5 @@
 src/NpsSDK/wsdl/development.wsdl
 .idea
 testManual.php
+composer.lock
+vendor/

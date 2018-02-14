@@ -7,7 +7,7 @@
  */
 
 use NpsSDK\Constants;
-use NpsSDK\Configuration;
+use NpsSDK\Configuration;z
 use NpsSDK\Sdk;
 use NpsSDK\ApiException;
 

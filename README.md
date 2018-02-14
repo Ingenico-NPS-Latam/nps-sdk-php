@@ -15,7 +15,7 @@ the SDK can be installed with [Composer](http://getcomposer.org/) by updating yo
 {
     "require": 
         {
-            "nps/php-sdk": "1.2.15"
+            "nps/php-sdk": "1.2.17"
         }
 }
 
@@ -191,5 +191,5 @@ use NpsSDK\Configuration;
 Configuration::secretKey(“your key here”);
 Configuration::useCache(True);
 Configuration::cacheTTL(86400);
-Configuration::cacheLocation('/tmp);
+Configuration::cacheLocation("/tmp");
 ```
