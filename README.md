@@ -9,7 +9,7 @@ Supports PHP 5.3 and above
 
 ## Composer installation
 
-the SDK can be installed with [Composer](http://getcomposer.org/) by updating your composer.json file
+The SDK can be installed with [Composer](http://getcomposer.org/) by updating your composer.json file
 
 ```bash
 {
@@ -42,10 +42,12 @@ It's a basic configuration of the SDK
 
 ```php 
 require_once './vendor/autoload.php';
+
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
+
 Configuration::environment(Constants::STAGING_ENV);
-Configuration::secretKey(“yourSecretKeyHere”);
+Configuration::secretKey(“your key here”);
 ```
 
 Here is an simple example request:
@@ -57,7 +59,7 @@ use NpsSDK\Sdk;
 use NpsSDK\ApiException;
 
 Configuration::environment(Constants::SANDBOX_ENV);
-Configuration::secretKey("YourKeyhere");
+Configuration::secretKey("your key here");
 
 $sdk = new Sdk();
 
@@ -94,6 +96,7 @@ require_once './vendor/autoload.php';
 
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
+
 Configuration::environment(Constants::STAGING_ENV);
 Configuration::environment(Constants::SANDBOX_ENV);
 Configuration::environment(Constants::PRODUCTION_ENV);
@@ -121,18 +124,51 @@ try{
 ## Advanced configurations
 
 Nps SDK allows you to log what’s happening with you request inside of our SDK, it logs by default to stout.
-The SDK uses the custom logger that you use for your project.
+The SDK uses the custom logger that you use for your project, but you need to specify logger's loglevel to Configuration.
 
 An example for monolog Logger.
 
-```php 
+```php
+require_once './vendor/autoload.php';
+
+use NpsSDK\Configuration;
+use NpsSDK\Constants;
+
 use Monolog\Logger;
 $logger = new Logger(“NpsSdk”);
 
-use NpsSDK\Configuration;
-
 Configuration::secretKey(“your key here”);
 Configuration::logger($logger);
+Configuration::loglevel("DEBUG");
+```
+
+In case that you want to log in a pretty way, you have to add the following configuration to the logger:
+
+```php
+require_once './vendor/autoload.php';
+
+use NpsSDK\Configuration;
+use NpsSDK\Constants;
+use NpsSDK\Sdk;
+
+use Monolog\Logger;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\StreamHandler;
+
+$output = "[%datetime%] NpsSdk.%level_name%: %message% \n";
+$formatter = new LineFormatter($output);
+$formatter->allowInlineLineBreaks(true);
+
+$stream = new StreamHandler('php://stdout', Logger::INFO);
+$stream->setFormatter($formatter);
+
+$logger = new Logger('NpsSdk');
+$logger->pushHandler($stream);
+
+Configuration::environment(Constants::SANDBOX_ENV);
+Configuration::secretKey("your key here");
+Configuration::logger($logger);
+Configuration::loglevel("INFO");
 ```
 
 Note: The logger needs to be PSR-3 compliant to work properly inside of the SDK, some examples are (Monolog, Analog).

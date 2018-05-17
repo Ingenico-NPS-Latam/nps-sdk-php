@@ -38,11 +38,18 @@ class SoapClientSdk extends SoapClient {
     }
   }
 
-  private function log($data){
-        if (Configuration::debug() && $this->_logger){
-            $this->_logger->info(Utils::mask_data($data));
-            $this->_logger->debug($data);
-          }
+  private function log($data) {
+    if (Configuration::debug() && $this->_logger){
+        $simplexml = simplexml_load_string($data);
+	    if($simplexml !==  FALSE) {
+        	$dom = dom_import_simplexml($simplexml)->ownerDocument;
+			$dom->formatOutput = true;
+            $xml = $dom->saveXML($dom->documentElement);
+			$this->_logger->info(Utils::mask_data($xml));
+            $this->_logger->debug($xml);
+        }
+	}
+	return;
     }
   
   /**
