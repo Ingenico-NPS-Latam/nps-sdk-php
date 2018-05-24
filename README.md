@@ -7,15 +7,15 @@ Supports PHP 5.3 and above
 
 ## How to install
 
-## Composer installation
+## # Composer installation
 
-The SDK can be installed with [Composer](http://getcomposer.org/) by updating your composer.json file
+the SDK can be installed with [Composer](http://getcomposer.org/) by updating your composer.json file
 
 ```bash
 {
     "require": 
         {
-            "nps/php-sdk": "1.2.17"
+            "nps/php-sdk": "1.2.18"
         }
 }
 
@@ -27,12 +27,12 @@ or by executing this command
 $ composer require nps/php-sdk
 ```
 
-## Manual installation
+## # Manual installation
 
 You can download or clone the SDK from our [Github Page](https://github.com/Ingenico-NPS-Latam/nps-sdk-php). and then include the `init.php` file.
 
 ```php 
-require_once(__DIR__ . '/nps-sdk-php/init.php');
+require_once __DIR__ . '/vendor/autoload.php';
 ```
 
 
@@ -41,25 +41,25 @@ require_once(__DIR__ . '/nps-sdk-php/init.php');
 It's a basic configuration of the SDK
 
 ```php 
-require_once './vendor/autoload.php';
-
+require_once __DIR__ . '/vendor/autoload.php';
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-
 Configuration::environment(Constants::STAGING_ENV);
-Configuration::secretKey(“your key here”);
+Configuration::secretKey(“yourSecretKeyHere”);
 ```
 
 Here is an simple example request:
 
 ```php 
-require_once './vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use NpsSDK\Sdk;
 use NpsSDK\ApiException;
+use NpsSDK\Configuration;
+use NpsSDK\Constants;
 
 Configuration::environment(Constants::SANDBOX_ENV);
-Configuration::secretKey("your key here");
+Configuration::secretKey("YourKeyhere");
 
 $sdk = new Sdk();
 
@@ -92,11 +92,10 @@ try{
 ## Environments
 
 ```php 
-require_once './vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use NpsSDK\Configuration;
 use NpsSDK\Constants;
-
 Configuration::environment(Constants::STAGING_ENV);
 Configuration::environment(Constants::SANDBOX_ENV);
 Configuration::environment(Constants::PRODUCTION_ENV);
@@ -109,7 +108,7 @@ ApiException: This exception is raised when a ReadTimeout or a ConnectTimeout oc
 Note: The rest of the exceptions that can occur will be detailed inside of the response provided by NPS or will be provided by the php SoapClient class.
 
 ```php 
-require_once './vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use NpsSDK\ApiException;
 
@@ -124,51 +123,18 @@ try{
 ## Advanced configurations
 
 Nps SDK allows you to log what’s happening with you request inside of our SDK, it logs by default to stout.
-The SDK uses the custom logger that you use for your project, but you need to specify logger's loglevel to Configuration.
+The SDK uses the custom logger that you use for your project.
 
 An example for monolog Logger.
 
-```php
-require_once './vendor/autoload.php';
-
-use NpsSDK\Configuration;
-use NpsSDK\Constants;
-
+```php 
 use Monolog\Logger;
 $logger = new Logger(“NpsSdk”);
 
+use NpsSDK\Configuration;
+
 Configuration::secretKey(“your key here”);
 Configuration::logger($logger);
-Configuration::loglevel("DEBUG");
-```
-
-In case that you want to log in a pretty way, you have to add the following configuration to the logger:
-
-```php
-require_once './vendor/autoload.php';
-
-use NpsSDK\Configuration;
-use NpsSDK\Constants;
-use NpsSDK\Sdk;
-
-use Monolog\Logger;
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\StreamHandler;
-
-$output = "[%datetime%] NpsSdk.%level_name%: %message% \n";
-$formatter = new LineFormatter($output);
-$formatter->allowInlineLineBreaks(true);
-
-$stream = new StreamHandler('php://stdout', Logger::INFO);
-$stream->setFormatter($formatter);
-
-$logger = new Logger('NpsSdk');
-$logger->pushHandler($stream);
-
-Configuration::environment(Constants::SANDBOX_ENV);
-Configuration::secretKey("your key here");
-Configuration::logger($logger);
-Configuration::loglevel("INFO");
 ```
 
 Note: The logger needs to be PSR-3 compliant to work properly inside of the SDK, some examples are (Monolog, Analog).
