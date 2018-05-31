@@ -122,6 +122,8 @@ try{
 
 ## Advanced configurations
 
+### Logging
+
 Nps SDK allows you to log what’s happening with you request inside of our SDK, it logs by default to stout.
 The SDK uses the custom logger that you use for your project.
 
@@ -137,6 +139,8 @@ Configuration::secretKey(“your key here”);
 Configuration::logger($logger);
 ```
 
+### LogLevel
+
 Note: The logger needs to be PSR-3 compliant to work properly inside of the SDK, some examples are (Monolog, Analog).
 
 
@@ -150,6 +154,8 @@ Configuration::secretKey(“your key here”);
 Configuration::loglevel(“DEBUG”);
 ```
 
+### Sanitize
+
 Sanitize allows the SDK to truncate to a fixed size some fields that could make request fail, like extremely long name.
 
 ```php 
@@ -159,7 +165,9 @@ Configuration::secretKey(“your key here”);
 Configuration::sanitize(true);
 ```
 
-you can change the timeout of the request.
+### Timeout
+
+You can change the timeout of the request.
 
 ExecutionTimeout(Default=60 seconds): you can change the execution timeout of the request.
 
@@ -173,7 +181,7 @@ Configuration::connectionTimeout(65);
 Configuration::executionTimeout(65);
 ```
 
-Proxy configuration
+### Proxy configuration
 
 ```php 
 use NpsSDK\Configuration;
@@ -185,7 +193,7 @@ Configuration::proxyUser("proxyUsername");
 Configuration::proxyPass("proxyPassword");
 ```
 
-Cache
+### Cache
 
 ```php 
 use NpsSDK\Configuration;
