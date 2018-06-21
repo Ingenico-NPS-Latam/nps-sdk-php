@@ -177,8 +177,8 @@ ConnectionTimeout(Default=60 seconds): you can change the connection timeout of 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
-Configuration::connectionTimeout(65);
-Configuration::executionTimeout(65);
+Configuration::connectionTimeout(10);
+Configuration::executionTimeout(60);
 ```
 
 ### Proxy configuration
