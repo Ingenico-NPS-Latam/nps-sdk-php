@@ -171,7 +171,7 @@ You can change the timeout of the request.
 
 ExecutionTimeout(Default=60 seconds): you can change the execution timeout of the request.
 
-ConnectionTimeout(Default=60 seconds): you can change the connection timeout of the request.
+ConnectionTimeout(Default=10 seconds): you can change the connection timeout of the request.
 
 ```php 
 use NpsSDK\Configuration;
