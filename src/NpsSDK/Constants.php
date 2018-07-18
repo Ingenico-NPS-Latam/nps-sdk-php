@@ -9,7 +9,7 @@ namespace NpsSDK;
 class Constants
 {
     const SDK_VERSION = "1.1.4";
-    const SDK_NAME = "PHP SDK ";
+    const SDK_NAME = "PHP SDK";
     const PAY_ONLINE_2P = "PayOnLine_2p";
     const AUTHORIZE_2P = "Authorize_2p";
     const QUERY_TXS = "QueryTxs";
