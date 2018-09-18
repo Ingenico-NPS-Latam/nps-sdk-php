@@ -80,6 +80,11 @@ class Sdk extends SoapClientSdk
         $resp = $this->callClient(Constants::BANK_PAYMENT_3P, $params);
         return $resp;
     }
+
+    function bankPayment2p($params){
+        $resp = $this->callClient(Constants::BANK_PAYMENT_2P, $params);
+        return $resp;
+    }
     
     function cashPayment3p($params){
         $resp = $this->callClient(Constants::CASH_PAYMENT_3P, $params);
