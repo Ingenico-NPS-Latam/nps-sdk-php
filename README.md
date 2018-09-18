@@ -1,11 +1,16 @@
 #  PHP SDK
  
-
 ## Availability
 Supports PHP 5.3 and above
 
-
 ## How to install
+
+##  Pre Requesites
+
+You will have to install the following packages for your PHP:
+### · SimpleXML    
+### · Curl
+### · Soap    
 
 ## Composer installation
 
@@ -177,8 +182,8 @@ ConnectionTimeout(Default=10 seconds): you can change the connection timeout of 
 use NpsSDK\Configuration;
 
 Configuration::secretKey(“your key here”);
-Configuration::connectionTimeout(10);
 Configuration::executionTimeout(60);
+Configuration::connectionTimeout(10);
 ```
 
 ### Proxy configuration
