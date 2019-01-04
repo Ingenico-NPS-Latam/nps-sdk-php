@@ -51,15 +51,17 @@ class Utils{
     {
       ksort($params);
       $concatenated_data = self::concatValues($params);
-      $concat_data_w_key = $concatenated_data . $key;
-      $hmac_hash = self::createHmacSha256Hash($concatenated_data, $key);
-      $s_hash = md5($concat_data_w_key);
-      $params["psp_SecureHash"] = $s_hash;
+      $secure_hash = self::createHmacSha256Hash($concatenated_data, $key);
+      $params["psp_SecureHash"] = $secure_hash;
       return $params;
     }
 
     public static function createHmacSha256Hash($data, $key) {
-        return hash_hmac('sha256', $data, $key);
+      return hash_hmac('sha256', $data, $key);
+    }
+
+    public static function createHmacSha512Hash($data, $key) {
+      return hash_hmac('sha512', $data, $key);
     }
 
     public static function concatValues($params)

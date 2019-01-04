@@ -9,5 +9,5 @@
 namespace NpsSDK;
 class Version
 {
-  const VERSION = "1.2.20";
+  const VERSION = "1.3.0";
 }
