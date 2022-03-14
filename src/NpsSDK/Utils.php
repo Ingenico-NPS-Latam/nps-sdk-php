@@ -74,7 +74,7 @@ class Utils{
       return $concated_data;
     }
 
-    public static function validate_size($value, $k="", $nodo="", $sanitizeStruc){
+    public static function validate_size($value, $sanitizeStruc, $k="", $nodo=""){
         if ($nodo != False){
             $key_name = $nodo . "." . $k . ".max_length";
         }else{
@@ -110,7 +110,7 @@ class Utils{
             }
             else{
 
-                $result_params[$key] = self::validate_size($value, $key, $nodo, $sanitizeStruc);
+                $result_params[$key] = self::validate_size($value, $sanitizeStruc, $key, $nodo);
             }
         }
 
